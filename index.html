@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martex</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--primary-color)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="header-only-bg">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- CSS-Only Popup -->
+    <input type="checkbox" id="close-popup" class="hidden">
+    <div class="onload-popup-overlay">
+        <div class="onload-popup rounded-2xl shadow-xl overflow-hidden relative">
+            <label for="close-popup"
+                class="absolute top-0 right-0 m-3 flex justify-center items-center bg-white text-gray-900 rounded-full shadow-sm"
+                style="width: 32px; height: 32px; cursor: pointer; z-index: 2;">
+                <i class="bi bi-x text-2xl"></i>
+            </label>
+            <img src="./images/model-1.png" alt="Promo Model" class="max-w-full h-auto w-full block">
+            <!-- Invisible clickable area for the baked-in button -->
+            <a href="#" class="absolute block" style="left: 25%; bottom: 12%; width: 50%; height: 18%; z-index: 3;"
+                title="Get started for free"></a>
+        </div>
+    </div>
+    <!-- Mobile Overlay -->
+    <div id="mobile-overlay"
+        class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden transition-opacity opacity-0 duration-300"></div>
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5 flex flex-wrap items-center justify-between">
+            <a class="navbar-brand flex items-center" href="#">
+                <!-- Desktop Logo (switches on scroll) -->
+                <img src="./images/martex-logo-white.png" alt="Martex Logo"
+                    class="logo-desktop hidden lg:block h-[36px] w-auto">
+                <!-- Mobile Logo (always pink because mobile navbar is white) -->
+                <img src="./images/martex-logo-pink.png" alt="Martex Logo"
+                    class="logo-mobile block lg:hidden h-[36px] w-auto">
+            </a>
+
+            <button class="navbar-toggler block lg:hidden border-0 shadow-none text-white focus:outline-none"
+                type="button" id="mobile-menu-button">
+                <i class="bi bi-list text-4xl"></i>
+            </button>
+
+            <div class="fixed top-0 right-0 h-full w-[280px] bg-white dark:bg-gray-900 z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto lg:static lg:translate-x-0 lg:w-auto lg:bg-transparent lg:dark:bg-transparent lg:flex lg:items-center lg:overflow-visible lg:flex-grow lg:justify-end"
+                id="navbarNav">
+
+                <!-- Close Button (Mobile Only) -->
+                <div class="flex justify-start p-4 lg:hidden border-b border-gray-200">
+                    <button type="button" id="close-menu-button"
+                        class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <i class="bi bi-x text-4xl"></i>
+                    </button>
+                </div>
+
+                <ul
+                    class="navbar-nav flex flex-col lg:flex-row lg:items-center gap-0 lg:gap-4 list-none m-0 p-0 w-full lg:w-auto">
+                    <li class="nav-item relative group w-full lg:w-auto border-b border-gray-200 lg:border-none">
+                        <a class="nav-link dropdown-toggle flex items-center justify-between lg:justify-start font-medium text-gray-700 lg:text-inherit px-6 py-4 lg:px-4 lg:py-3 cursor-pointer"
+                            id="aboutDropdown">
+                            About <i
+                                class="bi bi-chevron-down text-gray-400 lg:text-inherit text-xs lg:text-[10px] ml-1 mt-[2px]"></i>
+                        </a>
+                        <ul
+                            class="dropdown-menu hidden lg:group-hover:block lg:absolute left-0 bg-gray-50 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 shadow-inner lg:shadow-lg rounded-none lg:rounded-xl py-2 lg:py-3 mt-0 lg:mt-0 min-w-[200px] z-50 text-gray-800 dark:text-gray-200">
+                            <li><a class="dropdown-item block py-2 px-6 font-medium hover:text-primary transition-colors"
+                                    href="#">Why Martex?</a></li>
+                            <li><a class="dropdown-item block py-2 px-6 font-medium hover:text-primary transition-colors"
+                                    href="#">Integrations</a></li>
+                            <li><a class="dropdown-item block py-2 px-6 font-medium hover:text-primary transition-colors"
+                                    href="#">How It Works</a></li>
+                            <li><a class="dropdown-item block py-2 px-6 font-medium hover:text-primary transition-colors"
+                                    href="#">Best Solutions</a></li>
+                            <li><a class="dropdown-item block py-2 px-6 font-medium hover:text-primary transition-colors"
+                                    href="#">Testimonials</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item w-full lg:w-auto border-b border-gray-200 lg:border-none"><a
+                            class="nav-link block font-medium text-gray-700 lg:text-inherit px-6 py-4 lg:px-4 lg:py-3"
+                            href="#">Features</a></li>
+                    <li class="nav-item relative group w-full lg:w-auto border-b border-gray-200 lg:border-none">
+                        <a class="nav-link dropdown-toggle flex items-center justify-between lg:justify-start font-medium text-gray-700 lg:text-inherit px-6 py-4 lg:px-4 lg:py-3 cursor-pointer"
+                            id="pagesDropdown">
+                            Pages <i
+                                class="bi bi-chevron-down text-gray-400 lg:text-inherit text-xs lg:text-[10px] ml-1 mt-[2px]"></i>
+                        </a>
+                        <div
+                            class="dropdown-menu hidden lg:group-hover:block lg:absolute left-1/2 lg:-translate-x-1/2 bg-gray-50 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 shadow-inner lg:shadow-lg rounded-none lg:rounded-xl p-4 lg:p-8 mt-0 lg:mt-0 w-full lg:w-[800px] z-50 text-gray-800 dark:text-gray-200 pages-mega-menu">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6">
+                                <div>
+                                    <ul class="list-none m-0 p-0">
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">About Us</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Our Team</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium flex items-center hover:text-primary transition-colors"
+                                                href="#">Careers</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Career Details</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="list-none m-0 p-0">
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Core Features</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Our Projects</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Project Details</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Testimonials</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Download Page</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="list-none m-0 p-0">
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Pricing Page #1</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Pricing Page #2</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">FAQs Page</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Help Center</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">404 Page</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="list-none m-0 p-0">
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Blog Listing</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Single Blog Post</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Login Page</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Signup Page</a></li>
+                                        <li><a class="dropdown-item block py-2 font-medium hover:text-primary transition-colors"
+                                                href="#">Reset Password</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item w-full lg:w-auto border-b border-gray-200 lg:border-none"><a
+                            class="nav-link block font-medium text-gray-700 lg:text-inherit px-6 py-4 lg:px-4 lg:py-3"
+                            href="#">Pricing</a></li>
+                    <li class="nav-item w-full lg:w-auto border-b border-gray-200 lg:border-none"><a
+                            class="nav-link block font-medium text-gray-700 lg:text-inherit px-6 py-4 lg:px-4 lg:py-3"
+                            href="#">FAQs</a></li>
+                    <li class="nav-item lg:ml-2 w-full lg:w-auto"><a href="#"
+                            class="no-underline font-medium sign-in-link text-gray-700 lg:text-white hover:opacity-90 block px-6 py-4 lg:px-0 lg:py-0">Sign
+                            in</a></li>
+                    <li class="nav-item lg:ml-4 w-full lg:w-auto mt-auto lg:mt-0"><a href="#"
+                            class="btn-pink text-white font-medium block w-full text-center rounded-none lg:rounded-lg py-4 lg:py-2 lg:px-6 lg:inline-block">Sign
+                            up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO-1 -->
+
+    <section id="hero-1" class="flex items-center">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="flex flex-wrap items-center -mx-4">
+                <div
+                    class="w-full lg:w-1/2 px-4 text-white hero-content text-center lg:text-left mb-12 lg:mb-0 hero-content-anim">
+                    <h1
+                        class="text-[1.8rem] md:text-[3.5rem] lg:text-[4.5rem] tracking-tight leading-[1.2] lg:leading-[1.1] font-bold mb-6">
+                        Content is the key to building an audience</h1>
+                    <p class="text-md mb-12 lg:pr-12">
+                        Mauris donec turpis suscipit sapien ociis sagittis sapien tempor a volute ligula and aliquet
+                        tortor
+                    </p>
+                    <div>
+                        <a href="#"
+                            class="btn-pink text-white font-medium rounded-md px-6 py-4 mb-4 text-lg inline-block">Get
+                            started for free</a>
+                    </div>
+                    <div class="text-sm flex items-center justify-center lg:justify-start">
+                        <i class="bi bi-check-lg mr-2"></i> No credit card needed, free 14-day trial
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 px-4 text-center relative hero-image-anim">
+                    <img src="./images/hero-girl.png" alt="Martex Audience Building"
+                        class="max-w-full h-auto hero-girl-img inline-block">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Theme Settings Panel -->
+    <div id="theme-settings-panel"
+        class="fixed top-[20%] right-0 z-[1050] transform translate-x-full transition-transform duration-300 flex shadow-2xl">
+        <button id="theme-toggle-btn"
+            class="absolute left-0 -ml-[48px] top-0 bg-[var(--primary-color)] text-white w-12 h-12 flex justify-center items-center rounded-l-md shadow-lg"
+            style="transition: background-color 0.3s ease;">
+            <i class="bi bi-sliders text-2xl"></i>
+        </button>
+
+        <div class="bg-[#2a2d34] w-64 p-5 text-white shadow-2xl h-auto">
+            <div class="mb-6 pb-6 border-b border-gray-600">
+                <button id="dark-mode-btn"
+                    class="w-full border border-gray-400 rounded py-2 px-4 hover:bg-gray-700 transition flex justify-center items-center font-medium">
+                    Dark Mode
+                </button>
+            </div>
+
+            <div class="text-center font-medium mb-4 text-[15px]">Color Scheme</div>
+
+            <div class="grid grid-cols-2 gap-3 mb-6 px-2">
+                <button
+                    class="w-full h-10 rounded-md color-btn bg-[#ff4d79] border-2 border-transparent hover:border-white transition"
+                    data-color="#ff4d79"></button>
+                <button
+                    class="w-full h-10 rounded-md color-btn bg-[#6a4eea] border-2 border-transparent hover:border-white transition"
+                    data-color="#6a4eea"></button>
+                <button
+                    class="w-full h-10 rounded-md color-btn bg-[#b565a7] border-2 border-transparent hover:border-white transition"
+                    data-color="#b565a7"></button>
+                <button
+                    class="w-full h-10 rounded-md color-btn bg-[#3db1f5] border-2 border-transparent hover:border-white transition"
+                    data-color="#3db1f5"></button>
+                <button
+                    class="w-full h-10 rounded-md color-btn bg-[#c2185b] border-2 border-transparent hover:border-white transition"
+                    data-color="#c2185b"></button>
+                <button
+                    class="w-full h-10 rounded-md color-btn bg-[#673ab7] border-2 border-transparent hover:border-white transition"
+                    data-color="#673ab7"></button>
+                <button
+                    class="w-full h-10 rounded-md color-btn bg-[#f44336] border-2 border-transparent hover:border-white transition"
+                    data-color="#f44336"></button>
+                <button
+                    class="w-full h-10 rounded-md color-btn bg-[#00c853] border-2 border-transparent hover:border-white transition"
+                    data-color="#00c853"></button>
+            </div>
+
+            <button id="reset-color-btn"
+                class="w-full bg-[var(--primary-color)] text-white font-medium py-2.5 rounded hover:opacity-90 transition"
+                style="transition: background-color 0.3s ease;">
+                Reset Color
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Features-6 section -->
+    <section id="features-6"
+        class="py-[100px] lg:py-[80px] md:py-[70px] features-section division bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <!-- Section title -->
+            <div class="flex justify-center flex-wrap">
+                <div class="max-w-full lg:w-2/3 text-center">
+                    <h1
+                        class="text-[1.5rem] sm:text-[1.675rem] md:text-[1.64705rem] lg:text-[3.875rem] xl:text-[3.7rem] font-bold text-[#353F4F] dark:text-white mb-[15px] sm:mb-[20px] lg:mb-[20px] xl:mb-[26px] leading-[1.35] xl:leading-[1.25] transition-colors">
+                        Build a customer-centric marketing strategy</h1>
+                    <p
+                        class="text-[#757575] dark:text-gray-400 text-[1rem] sm:text-[1.21875rem] md:text-[1.32352rem] xl:text-[1.5rem] mt-[12px] lg:mt-[15px] xl:mt-[18px] mb-0 px-[3%] sm:px-0 transition-colors">
+                        Ligula risus auctor tempus magna feugiat lacinia.</p>
+                </div>
+            </div>
+            <!-- Feature Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 lg:mt-20 scroll-slide-up">
+                <!-- Feature 1 -->
+                <div class="text-center px-4">
+                    <div class="inline-flex justify-center items-center relative mb-8 w-24 h-24">
+                        <div class="absolute inset-0 bg-[var(--primary-color)] opacity-10 transform -rotate-12 scale-125"
+                            style="border-radius: 50% 50% 50% 70% / 50% 50% 70% 60%;"></div>
+                        <i class="bi bi-easel relative z-10 text-[3.5rem] text-[var(--primary-color)]"></i>
+                    </div>
+                    <h5 class="text-[1.35rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">Market
+                        Research</h5>
+                    <p
+                        class="text-[#6C757D] dark:text-gray-400 text-[14px] sm:text-[16px] md:text-[16.7px] xl:text-[18.5px] leading-[1.6] transition-colors">
+                        Luctus augue egestas undo ultrice and quisque lacus</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="text-center px-4">
+                    <div class="inline-flex justify-center items-center relative mb-8 w-24 h-24">
+                        <div class="absolute inset-0 bg-[var(--primary-color)] opacity-10 transform rotate-12 scale-125"
+                            style="border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;"></div>
+                        <i class="bi bi-lightbulb relative z-10 text-[3.5rem] text-[var(--primary-color)]"></i>
+                    </div>
+                    <h5 class="text-[1.35rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">User
+                        Experience</h5>
+                    <p
+                        class="text-[#6C757D] dark:text-gray-400 text-[14px] sm:text-[16px] md:text-[16.7px] xl:text-[18.5px] leading-[1.6] transition-colors">
+                        Luctus augue egestas undo ultrice and quisque lacus</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="text-center px-4">
+                    <div class="inline-flex justify-center items-center relative mb-8 w-24 h-24">
+                        <div class="absolute inset-0 bg-[var(--primary-color)] opacity-10 transform -rotate-6 scale-125"
+                            style="border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;"></div>
+                        <i class="bi bi-graph-up-arrow relative z-10 text-[3.5rem] text-[var(--primary-color)]"></i>
+                    </div>
+                    <h5 class="text-[1.35rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">Digital
+                        Marketing</h5>
+                    <p
+                        class="text-[#6C757D] dark:text-gray-400 text-[14px] sm:text-[16px] md:text-[16.7px] xl:text-[18.5px] leading-[1.6] transition-colors">
+                        Luctus augue egestas undo ultrice and quisque lacus</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="text-center px-4">
+                    <div class="inline-flex justify-center items-center relative mb-8 w-24 h-24">
+                        <div class="absolute inset-0 bg-[var(--primary-color)] opacity-10 transform rotate-6 scale-125"
+                            style="border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;"></div>
+                        <i class="bi bi-window-sidebar relative z-10 text-[3.5rem] text-[var(--primary-color)]"></i>
+                    </div>
+                    <h5 class="text-[1.35rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">SEO
+                        Services</h5>
+                    <p
+                        class="text-[#6C757D] dark:text-gray-400 text-[14px] sm:text-[16px] md:text-[16.7px] xl:text-[18.5px] leading-[1.6] transition-colors">
+                        Luctus augue egestas undo ultrice and quisque lacus</p>
+                </div>
+            </div>
+
+            <!-- Devider line -->
+
+            <hr
+                class="divider w-full mt-[80px] lg:mt-[100px] h-[1px] bg-transparent bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#bbb_38%,#bbb_64%,rgba(206,211,246,0)_99%)] dark:bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#444_38%,#444_64%,rgba(206,211,246,0)_99%)] opacity-40 ![border:none] transition-colors" />
+        </div>
+    </section>
+    <!-- END FEATURES-6 SECTION -->
+
+    <!-- TEXT CONTENT -->
+
+    <section id="lnk-1" class="py-[60px] bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="flex flex-wrap items-center -mx-4">
+                <!-- Image on left -->
+                <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+                    <div class="relative scroll-slide-left">
+                        <img src="./images/lnk-1.png" alt="Engage Visitors" class="max-w-full h-auto mx-auto block">
+                    </div>
+                </div>
+                <!-- Text on right -->
+                <div class="w-full md:w-1/2 px-4">
+                    <div class="md:pl-6 lg:pl-10 xl:pl-16 scroll-slide-right">
+                        <span
+                            class="text-[#6C757D] dark:text-gray-400 font-semibold tracking-wider text-s uppercase mb-3 block transition-colors">Enhance
+                            Engagement</span>
+                        <h2
+                            class="text-[1.8rem] sm:text-[1.9rem] md:text-[2rem] lg:text-[2.3rem] xl:text-[3rem] font-bold text-[#353F4F] dark:text-white leading-[1.2] mb-6 transition-colors">
+                            Engage your most<br class="hidden md:block"> valuable visitors
+                        </h2>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[1.125rem] md:text-[0.82rem] lg:text-[0.95rem] xl:text-[1.125rem] leading-[1.7] mb-8 transition-colors">
+                            Sodales tempor sapien quaerat ipsum undo congue laoreet turpis neque auctor turpis vitae
+                            dolor luctus placerat magna and ligula cursus purus vitae purus an ipsum suscipit
+                        </p>
+                        <h4
+                            class="text-[1.5rem] sm:text-[1.2rem] md:text-[1.2rem] lg:text-[1.4rem] xl:text-[1.5rem] font-bold text-[#353F4F] dark:text-white mb-4 transition-colors">
+                            Digits that define growth</h4>
+                        <ul
+                            class="list-disc pl-5 text-[#6C757D] dark:text-gray-400 text-[1.05rem] md:text-[0.82rem] lg:text-[0.95rem] xl:text-[1.125rem] leading-[1.7] space-y-4 marker:text-gray-500 transition-colors">
+                            <li class="pl-2">Sapien quaerat tempor an ipsum laoreet purus and sapien dolor an ultrice
+                                ipsum aliquam undo congue cursus dolor</li>
+                            <li class="pl-2">Purus suscipit cursus vitae cubilia magnis volute egestas vitae sapien
+                                turpis ultrice auctor congue magna placerat</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2ND TEXT CONTENT -->
+
+    <section id="lnk-2" class="py-[60px] bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="flex flex-wrap md:flex-row-reverse items-center -mx-4">
+                <!-- Image on right -->
+                <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+                    <div class="relative scroll-slide-right">
+                        <img src="./images/lnk-2.png" alt="Solution that grows with you"
+                            class="max-w-full h-auto mx-auto block">
+                    </div>
+                </div>
+                <!-- Text on left -->
+                <div class="w-full md:w-1/2 px-4">
+                    <div class="md:pr-6 lg:pr-10 xl:pr-16 scroll-slide-left">
+                        <h2
+                            class="text-[1.2rem] sm:text-[1rem] md:text-[1.2rem] lg:text-[2rem] xl:text-[2rem] font-semibold text-[#353F4F] dark:text-white leading-[1.2] mb-6 transition-colors">
+                            Solution that grows with you
+                        </h2>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[0.9rem] md:text-[0.82rem] lg:text-[0.95rem] xl:text-[1.125rem] leading-[1.7] mb-8 transition-colors">
+                            Sodales tempor sapien quaerat ipsum undo congue laoreet turpis neque auctor turpis vitae
+                            dolor luctus placerat magna and ligula cursus purus vitae purus an ipsum suscipit
+                        </p>
+                        <h4
+                            class="text-[1.2rem] sm:text-[1.2rem] md:text-[1.2rem] lg:text-[1.4rem] xl:text-[1.9rem] font-bold text-[#353F4F] dark:text-white mb-4 transition-colors">
+                            Connect your data sources</h4>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[0.9rem] md:text-[0.82rem] lg:text-[0.95rem] xl:text-[1.125rem] leading-[1.7] mb-8 transition-colors">
+                            Tempor sapien sodales quaerat ipsum undo congue laoreet turpis neque auctor turpis vitae
+                            dolor luctus placerat magna and ligula cursus purus an ipsum vitae suscipit purus
+                        </p>
+                        <ul
+                            class="list-disc pl-5 text-[#6C757D] dark:text-gray-400 text-[0.9rem] md:text-[0.82rem] lg:text-[0.95rem] xl:text-[1.125rem] leading-[1.7] space-y-4 marker:text-gray-500 transition-colors">
+                            <li class="pl-2">Tempor sapien quaerat an ipsum laoreet purus and sapien dolor an ultrice
+                                ipsum aliquam undo congue dolor cursus</li>
+                            <li class="pl-2">Cursus purus suscipit vitae cubilia magnis volute egestas vitae sapien
+                                turpis ultrice auctor congue magna placerat</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- END TEXT CONTENT -->
+
+    <!-- FEATURES-5 SECTION -->
+    <section id="features-5"
+        class="pt-[60px] pb-[30px] lg:pt-[80px] lg:pb-[40px] bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <!-- Section title -->
+            <div class="flex justify-center flex-wrap mb-10 lg:mb-16">
+                <div class="max-w-full lg:w-2/3 text-center">
+                    <h2
+                        class="text-[1.8rem] sm:text-[2.2rem] md:text-[2.5rem] lg:text-[3.5rem] font-bold text-[#353F4F] dark:text-white mb-[15px] sm:mb-[20px] leading-[1.2]">
+                        Reach your audience through social media marketing
+                    </h2>
+                    <p
+                        class="text-[#757575] dark:text-gray-400 text-[1rem] sm:text-[1.25rem] lg:text-[1.35rem] mt-[12px] mb-0 max-w-2xl mx-auto">
+                        Ligula risus auctor tempus magna feugiat lacinia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+                <!-- Column 1: Marketing Integrations -->
+                <div class="bg-[#F8F9FA] dark:bg-gray-800 rounded-[20px] p-8 lg:p-14 text-center h-full flex flex-col scroll-slide-up"
+                    style="animation-delay: 0.1s;">
+                    <h3
+                        class="text-[1.5rem] lg:text-[1.8rem] font-bold text-[#353F4F] dark:text-white mb-4 transition-colors">
+                        Marketing Integrations</h3>
+                    <p
+                        class="text-[#6C757D] dark:text-gray-400 text-[1rem] lg:text-[1.1rem] leading-[1.7] mb-8 lg:mb-10 max-w-xs mx-auto transition-colors">
+                        Aliquam a augue suscipit luctus diam neque purus ipsum neque and dolor primis libero
+                    </p>
+                    <div class="mt-auto">
+                        <img src="./images/feature-51.png" alt="Marketing Integrations"
+                            class="w-full max-w-md mx-auto h-auto dark:hidden">
+                        <img src="./images/feature-51-dark.png" alt="Marketing Integrations"
+                            class="w-full max-w-md mx-auto h-auto hidden dark:block">
+                    </div>
+                </div>
+
+                <!-- Column 2: Productivity Focused -->
+                <div class="bg-[#F8F9FA] dark:bg-gray-800 rounded-[20px] p-8 lg:p-14 text-center h-full flex flex-col scroll-slide-up"
+                    style="animation-delay: 0.3s;">
+                    <div class="mb-8 lg:mb-10">
+                        <img src="./images/f-52.png" alt="Productivity Focused"
+                            class="w-full max-w-md mx-auto h-auto dark:hidden">
+                        <img src="./images/f-52_dark.png" alt="Productivity Focused"
+                            class="w-full max-w-md mx-auto h-auto hidden dark:block">
+                    </div>
+                    <div class="mt-auto">
+                        <h3
+                            class="text-[1.5rem] lg:text-[1.8rem] font-bold text-[#353F4F] dark:text-white mb-4 transition-colors">
+                            Productivity Focused</h3>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[1rem] lg:text-[1.1rem] leading-[1.7] mb-0 max-w-xs mx-auto transition-colors">
+                            Aliquam a augue suscipit luctus diam neque purus ipsum neque and dolor primis libero
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END FEATURES-5 SECTION -->
+
+    <!-- STATISTIC-1 SECTION -->
+    <section id="statistic-1"
+        class="pt-[30px] pb-[60px] lg:pt-[40px] lg:pb-[80px] bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                <!-- Stat 1 -->
+                <div class="flex flex-col lg:flex-row items-center justify-center scroll-slide-up"
+                    style="animation-delay: 0.1s;">
+                    <div
+                        class="text-[2.5rem] lg:text-[3.2rem] font-bold text-[#353F4F] dark:text-white lg:mr-5 mb-1 lg:mb-0 leading-none transition-colors text-center">
+                        <span class="counter" data-target="89">0</span>k
+                    </div>
+                    <p
+                        class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] lg:text-[1.05rem] leading-[1.3] max-w-[250px] lg:max-w-[170px] xl:max-w-[190px] mb-0 transition-colors text-center lg:text-left">
+                        Porta justo integer and velna vitae auctor
+                    </p>
+                </div>
+                <!-- Stat 2 -->
+                <div class="flex flex-col lg:flex-row items-center justify-center scroll-slide-up"
+                    style="animation-delay: 0.2s;">
+                    <div
+                        class="text-[2.5rem] lg:text-[3.2rem] font-bold text-[#353F4F] dark:text-white lg:mr-5 mb-1 lg:mb-0 leading-none transition-colors text-center">
+                        <span class="counter" data-target="76">0</span>%
+                    </div>
+                    <p
+                        class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] lg:text-[1.05rem] leading-[1.3] max-w-[250px] lg:max-w-[170px] xl:max-w-[190px] mb-0 transition-colors text-center lg:text-left">
+                        Ligula magna suscipit vitae and rutrum
+                    </p>
+                </div>
+                <!-- Stat 3 -->
+                <div class="flex flex-col lg:flex-row items-center justify-center scroll-slide-up"
+                    style="animation-delay: 0.3s;">
+                    <div
+                        class="text-[2.5rem] lg:text-[3.2rem] font-bold text-[#353F4F] dark:text-white lg:mr-5 mb-1 lg:mb-0 leading-none transition-colors text-center">
+                        <span class="counter-float" data-target="4.93">0.00</span>
+                    </div>
+                    <p
+                        class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] lg:text-[1.05rem] leading-[1.3] max-w-[250px] lg:max-w-[170px] xl:max-w-[190px] mb-0 transition-colors text-center lg:text-left">
+                        Sagittis congue augue egestas an egestas
+                    </p>
+                </div>
+            </div>
+
+            <!-- Devider line -->
+            <hr
+                class="divider w-full mt-[40px] lg:mt-[60px] h-[1px] bg-transparent bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#bbb_38%,#bbb_64%,rgba(206,211,246,0)_99%)] dark:bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#444_38%,#444_64%,rgba(206,211,246,0)_99%)] opacity-40 ![border:none] transition-colors" />
+        </div>
+    </section>
+    <!-- END STATISTIC-1 SECTION -->
+
+    <!-- LNK-3 SECTION -->
+    <section id="lnk-3"
+        class="pt-[60px] pb-[60px] lg:pt-[80px] lg:pb-[80px] bg-white dark:bg-gray-900 overflow-hidden transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="flex flex-wrap items-center -mx-4">
+                <!-- Image on left -->
+                <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+                    <div class="relative scroll-slide-left">
+                        <img src="./images/lnk-21.png" alt="The smarter way to work"
+                            class="max-w-full h-auto mx-auto block">
+                    </div>
+                </div>
+                <!-- Text on right -->
+                <div class="w-full md:w-1/2 px-4">
+                    <div class="md:pl-6 lg:pl-10 xl:pl-16 scroll-slide-right">
+                        <h2
+                            class="text-[1.8rem] sm:text-[2rem] md:text-[2.2rem] lg:text-[2.6rem] font-bold text-[#353F4F] dark:text-white leading-[1.2] mb-6 transition-colors">
+                            The smarter way to work
+                        </h2>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[1rem] md:text-[0.95rem] lg:text-[1.1rem] leading-[1.7] mb-8 transition-colors">
+                            Sodales tempor sapien quaerat ipsum undo congue laoreet turpis neque auctor turpis vitae
+                            dolor luctus placerat magna and ligula cursus purus vitae purus an ipsum suscipit
+                        </p>
+                        <h4
+                            class="text-[1.3rem] sm:text-[1.4rem] md:text-[1.4rem] lg:text-[1.6rem] font-bold text-[#353F4F] dark:text-white mb-4 transition-colors">
+                            Full access to all features
+                        </h4>
+                        <ul
+                            class="list-disc pl-5 text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[0.95rem] lg:text-[1.05rem] leading-[1.7] space-y-4 marker:text-gray-400 mb-8 transition-colors">
+                            <li class="pl-2">Cursus purus suscipit vitae cubilia magnis volute egestas vitae sapien
+                                turpis sodales magna undo aoreet primis</li>
+                            <li class="pl-2">Tempor sapien quaerat an ipsum laoreet purus and sapien dolor an ultrice
+                                ipsum aliquam undo congue dolor cursus purus congue and ipsum purus sapien a blandit
+                            </li>
+                        </ul>
+                        <a href="#"
+                            class="inline-block border-2 border-[#353F4F] dark:border-gray-300 text-[#353F4F] dark:text-gray-300 font-semibold rounded-md py-[10px] px-[24px] hover:bg-[#E73971] hover:text-white hover:border-[#E73971] transition-all duration-300">
+                            What's possible?
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END LNK-3 SECTION -->
+
+    <!-- FEATURES-12 SECTION -->
+    <section id="features-12"
+        class="relative pt-[60px] pb-[60px] lg:pt-[80px] lg:pb-[80px] bg-white dark:bg-gray-900 overflow-hidden transition-colors duration-300">
+
+        <!-- Responsive Background Box -->
+        <div
+            class="absolute right-0 top-[20%] sm:top-[100%] md:top-[50%] lg:top-[20%] w-[90%] md:w-[70%] lg:w-[45%] h-[60%] md:h-[40%] lg:h-[60%] bg-[#F2F4F8] dark:bg-gray-800 rounded-l-[30px] lg:rounded-l-[40px] z-0 transition-colors duration-300 hidden sm:block">
+        </div>
+
+        <div class="relative z-10 w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="flex flex-wrap items-center -mx-4">
+                <!-- Text on left -->
+                <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
+                    <div class="lg:pr-10 xl:pr-16 scroll-slide-left">
+                        <span
+                            class="text-[#6C757D] dark:text-gray-400 font-bold tracking-[2px] text-[0.8rem] uppercase mb-4 block transition-colors">
+                            ONE-STOP SOLUTION
+                        </span>
+                        <h2
+                            class="text-[2rem] sm:text-[2rem] md:text-[2rem] lg:text-[2.8rem] xl:text-[3rem] font-bold text-[#353F4F] dark:text-white leading-[1.2] mb-6 transition-colors">
+                            Smart solutions,<br />real-time results
+                        </h2>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[1rem] md:text-[1.1rem] leading-[1.7] mb-8 transition-colors">
+                            Sodales tempor sapien quaerat ipsum and congue undo laoreet turpis neque auctor turpis vitae
+                            dolor luctus placerat magna ligula and cursus vitae
+                        </p>
+
+                        <ul class="space-y-4 mb-0">
+                            <li class="flex items-start">
+                                <i
+                                    class="bi bi-check2 text-[#E73971] text-xl mr-3 font-bold flex-shrink-0 mt-[2px]"></i>
+                                <span
+                                    class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.6] transition-colors">Magna
+                                    dolor luctus at egestas sapien</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i
+                                    class="bi bi-check2 text-[#E73971] text-xl mr-3 font-bold flex-shrink-0 mt-[2px]"></i>
+                                <span
+                                    class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.6] transition-colors">Cursus
+                                    purus suscipit vitae cubilia magnis volute egestas vitae sapien turpis ultrice
+                                    auctor congue varius magnis</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i
+                                    class="bi bi-check2 text-[#E73971] text-xl mr-3 font-bold flex-shrink-0 mt-[2px]"></i>
+                                <span
+                                    class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.6] transition-colors">Volute
+                                    turpis dolores and sagittis congue</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Cards on right -->
+                <div class="w-full lg:w-1/2 px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 scroll-slide-right">
+                        <!-- Card 1 -->
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-[0_5px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_20px_rgba(0,0,0,0.2)] transition-colors duration-300">
+                            <div
+                                class="w-[60px] h-[60px] rounded-full bg-[#FFEBF1] dark:bg-opacity-10 flex items-center justify-center text-[#E73971] text-[1.75rem] mb-6">
+                                <i class="bi bi-layers"></i>
+                            </div>
+                            <h4 class="text-[1.2rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">
+                                Content Marketing</h4>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] leading-[1.6] mb-0 transition-colors">
+                                Porta semper lacus and cursus feugiat at primis ultrice a ligula auctor
+                            </p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-[0_5px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_20px_rgba(0,0,0,0.2)] transition-colors duration-300">
+                            <div
+                                class="w-[60px] h-[60px] rounded-full bg-[#FFEBF1] dark:bg-opacity-10 flex items-center justify-center text-[#E73971] text-[1.75rem] mb-6">
+                                <i class="bi bi-cursor"></i>
+                            </div>
+                            <h4 class="text-[1.2rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">
+                                Pay Per Click (PPC)</h4>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] leading-[1.6] mb-0 transition-colors">
+                                Porta semper lacus and cursus feugiat at primis ultrice a ligula auctor
+                            </p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-[0_5px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_20px_rgba(0,0,0,0.2)] transition-colors duration-300">
+                            <div
+                                class="w-[60px] h-[60px] rounded-full bg-[#FFEBF1] dark:bg-opacity-10 flex items-center justify-center text-[#E73971] text-[1.75rem] mb-6">
+                                <i class="bi bi-play-btn"></i>
+                            </div>
+                            <h4 class="text-[1.2rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">
+                                Video Marketing</h4>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] leading-[1.6] mb-0 transition-colors">
+                                Porta semper lacus and cursus feugiat at primis ultrice a ligula auctor
+                            </p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-[0_5px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_20px_rgba(0,0,0,0.2)] transition-colors duration-300">
+                            <div
+                                class="w-[60px] h-[60px] rounded-full bg-[#FFEBF1] dark:bg-opacity-10 flex items-center justify-center text-[#E73971] text-[1.75rem] mb-6">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                            <h4 class="text-[1.2rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">
+                                Business Analytics</h4>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] leading-[1.6] mb-0 transition-colors">
+                                Porta semper lacus and cursus feugiat at primis ultrice a ligula auctor
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END FEATURES-12 SECTION -->
+
+    <!-- TEXT CONTENT -->
+
+    <section id="lnk-1" class="py-[60px] bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="flex flex-wrap items-center -mx-4">
+                <!-- Image on left -->
+                <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+                    <div class="relative scroll-slide-left">
+                        <img src="./images/tc.png" alt="Engage Visitors" class="max-w-full h-auto mx-auto block">
+                    </div>
+                </div>
+                <!-- Text on right -->
+                <div class="w-full md:w-1/2 px-4">
+                    <div class="md:pl-6 lg:pl-10 xl:pl-16 scroll-slide-right">
+                        <span
+                            class="text-[#6C757D] dark:text-gray-400 font-semibold tracking-wider text-s uppercase mb-3 block transition-colors">Easy
+                            Integration</span>
+                        <h2
+                            class="text-[1.8rem] sm:text-[1.9rem] md:text-[2rem] lg:text-[2.3rem] xl:text-[3rem] font-bold text-[#353F4F] dark:text-white leading-[1.2] mb-6 transition-colors">
+                            Plug your essential tools in few clicks
+                        </h2>
+                        <ul
+                            class="list-disc pl-5 text-[#6C757D] dark:text-gray-400 text-[1.05rem] md:text-[0.82rem] lg:text-[0.95rem] xl:text-[1.125rem] leading-[1.7] space-y-4 marker:text-gray-500 transition-colors">
+                            <li class="pl-2">Cursus purus suscipit vitae cubilia magnis volute egestas vitae sapien
+                                turpis sodales magna undo aoreet primis</li>
+                            <li class="pl-2">Tempor sapien quaerat an ipsum laoreet purus and sapien dolor an ultrice
+                                ipsum aliquam undo congue dolor cursus purus congue and ipsum purus sapien a blandit
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- END TEXT CONTENT -->
+
+    <!-- IMAGE CONTENT -->
+
+    <section id="img-1"
+        class="pt-[60px] pb-[40px] lg:pt-[80px] lg:pb-[60px] bg-[url('./images/bg-1.png')] dark:bg-none dark:bg-gray-900 bg-cover bg-center w-full transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <!-- Section Title -->
+            <div class="flex justify-center flex-wrap mb-10 lg:mb-14">
+                <div class="max-w-full lg:w-3/4 xl:w-2/3 text-center scroll-slide-up">
+                    <h2
+                        class="text-[2rem] sm:text-[2.4rem] md:text-[3rem] lg:text-[3.875rem] xl:text-[3.875rem] font-bold text-[#353F4F] dark:text-white mb-[15px] sm:mb-[20px] leading-[1.2] transition-colors">
+                        Track the progress towards objectives with key results
+                    </h2>
+                    <p
+                        class="text-[#757575] dark:text-gray-400 text-[1.1rem] sm:text-[1.25rem] lg:text-[1.35rem] mt-[12px] mb-0 max-w-2xl mx-auto transition-colors">
+                        Ligula risus auctor tempus magna feugiat lacinia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Video/Image -->
+            <div class="flex justify-center scroll-slide-up" style="animation-delay: 0.2s;">
+                <div
+                    class="relative w-full max-w-[1140px] mx-auto rounded-[20px] overflow-hidden group -mb-[60px] md:-mb-[100px] lg:-mb-[120px]">
+                    <img src="./images/dashboard.png" alt="Dashboard Video Preview" class="w-full h-auto block">
+
+                    <!-- Play Button -->
+                    <a href="#" id="play-video-btn" class="absolute inset-0 flex items-center justify-center z-10"
+                        aria-label="Play Video">
+                        <div
+                            class="w-[70px] h-[70px] md:w-[90px] md:h-[90px] bg-[#E73971] rounded-full flex items-center justify-center text-white shadow-lg transform transition-transform duration-300 hover:scale-110">
+                            <i class="bi bi-play-fill text-[35px] md:text-[45px] ml-[4px]"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal"
+        class="fixed inset-0 z-[100] bg-black/80 hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="relative w-full max-w-[900px] px-4">
+            <button id="close-video"
+                class="absolute -top-10 right-4 md:-right-0 text-white text-3xl hover:text-gray-300 focus:outline-none">&times;</button>
+            <div class="relative pt-[56.25%] bg-black rounded-lg overflow-hidden shadow-2xl">
+                <iframe id="youtube-player" class="absolute inset-0 w-full h-full" src="" frameborder="0"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- END IMAGE CONTENT -->
+
+    <!-- BRANDS-1 -->
+    <section id="brands-1"
+        class="pt-[140px] md:pt-[150px] lg:pt-[150px] pb-[60px] bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="text-center mb-10">
+                <p
+                    class="text-[#353F4F] dark:text-gray-300 font-semibold text-[1.1rem] md:text-[1.2rem] transition-colors">
+                    Martex is loved and trusted by thousands:</p>
+            </div>
+
+            <div class="overflow-hidden relative w-full" id="brands-carousel">
+                <div class="flex items-center transition-transform duration-1000 ease-in-out" id="brands-track">
+                    <!-- Brand 2 -->
+                    <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
+                        <img src="./images/brand-2.png" alt="Brand 2"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
+                        <img src="./images/brand-2-white.png" alt="Brand 2"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
+                    </div>
+                    <!-- Brand 3 -->
+                    <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
+                        <img src="./images/brand-3.png" alt="Brand 3"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
+                        <img src="./images/brand-3-white.png" alt="Brand 3"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
+                    </div>
+                    <!-- Brand 4 -->
+                    <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
+                        <img src="./images/brand-4.png" alt="Brand 4"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
+                        <img src="./images/brand-4-white.png" alt="Brand 4"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
+                    </div>
+                    <!-- Brand 5 -->
+                    <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
+                        <img src="./images/brand-5.png" alt="Brand 5"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
+                        <img src="./images/brand-5-white.png" alt="Brand 5"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
+                    </div>
+                    <!-- Brand 6 -->
+                    <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
+                        <img src="./images/brand-6.png" alt="Brand 6"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
+                        <img src="./images/brand-6-white.png" alt="Brand 6"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
+                    </div>
+                    <!-- Brand 7 -->
+                    <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
+                        <img src="./images/brand-7.png" alt="Brand 7"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
+                        <img src="./images/brand-7-white.png" alt="Brand 7"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
+                    </div>
+                    <!-- Brand 8 -->
+                    <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
+                        <img src="./images/brand-8.png" alt="Brand 8"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
+                        <img src="./images/brand-8-white.png" alt="Brand 8"
+                            class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider line -->
+            <hr
+                class="divider w-full mt-[60px] lg:mt-[80px] h-[1px] bg-transparent bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#bbb_38%,#bbb_64%,rgba(206,211,246,0)_99%)] dark:bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#444_38%,#444_64%,rgba(206,211,246,0)_99%)] opacity-40 ![border:none] transition-colors" />
+        </div>
+    </section>
+    <!-- END BRANDS-1 -->
+
+    <!-- FEATURES-2 Section -->
+
+    <section class="pt-[50px] pb-[60px] lg:pb-[80px] dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="text-center mb-10">
+                <h2
+                    class="text-[2rem] sm:text-[2.4rem] md:text-[3rem] lg:text-[3.875rem] xl:text-[3.875rem] font-bold text-[#353F4F] dark:text-white mb-[15px] sm:mb-[20px] leading-[1.2] transition-colors">
+                    The Complete Solutions
+                </h2>
+                <p
+                    class="text-[#757575] dark:text-gray-400 text-[1.1rem] sm:text-[1.25rem] lg:text-[1.35rem] mt-[12px] mb-0 max-w-2xl mx-auto transition-colors">
+                    Ligula risus auctor tempus magna feugiat lacinia.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 mt-[60px] md:mt-[80px] lg:mt-[100px]">
+                <div class="w-full flex flex-col items-center scroll-slide-up" style="animation-delay: 0.1s;">
+                    <div
+                        class="w-full bg-gradient-to-b from-[#f4f6f9] to-transparent dark:from-gray-800 dark:to-transparent rounded-t-[20px] rounded-b-none pt-10 pb-4 px-8 sm:px-10 flex items-center justify-center mb-6">
+                        <img src="images/f_1.png" alt="Intuitive Dashboard"
+                            class="dark:hidden w-full h-auto max-w-[240px] lg:max-w-[260px] xl:max-w-[300px]">
+                        <img src="images/f_1_dark.png" alt="Intuitive Dashboard"
+                            class="hidden dark:block w-full h-auto max-w-[240px] lg:max-w-[260px] xl:max-w-[300px]">
+                    </div>
+                    <div class="text-center w-full">
+                        <p
+                            class="text-[1.4rem] md:text-[1.3rem] lg:text-[1.5rem] font-semibold text-[#353F4F] dark:text-white mb-[15px] leading-[1.2] transition-colors">
+                            Intuitive Dashboard
+                        </p>
+                        <p
+                            class="text-[#757575] dark:text-gray-400 text-[0.95rem] lg:text-[1.05rem] mb-0 max-w-[300px] mx-auto transition-colors">
+                            Luctus egestas augue undo ultrice aliquam in lacus congue dapibus
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col items-center scroll-slide-up" style="animation-delay: 0.2s;">
+                    <div
+                        class="w-full bg-gradient-to-b from-[#f4f6f9] to-transparent dark:from-gray-800 dark:to-transparent rounded-t-[20px] rounded-b-none pt-10 pb-4 px-8 sm:px-10 flex items-center justify-center mb-6">
+                        <img src="images/f_2.png" alt="Effortless Integration"
+                            class="dark:hidden w-full h-auto max-w-[240px] lg:max-w-[260px] xl:max-w-[300px]">
+                        <img src="images/f_2_dark.png" alt="Effortless Integration"
+                            class="hidden dark:block w-full h-auto max-w-[240px] lg:max-w-[260px] xl:max-w-[300px]">
+                    </div>
+                    <div class="text-center w-full">
+                        <p
+                            class="text-[1.4rem] md:text-[1.3rem] lg:text-[1.5rem] font-semibold text-[#353F4F] dark:text-white mb-[15px] leading-[1.2] transition-colors">
+                            Effortless Integration
+                        </p>
+                        <p
+                            class="text-[#757575] dark:text-gray-400 text-[0.95rem] lg:text-[1.05rem] mb-0 max-w-[300px] mx-auto transition-colors">
+                            Tempor laoreet augue undo ultrice aliquam in lacusq luctus feugiat
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col items-center scroll-slide-up" style="animation-delay: 0.3s;">
+                    <div
+                        class="w-full bg-gradient-to-b from-[#f4f6f9] to-transparent dark:from-gray-800 dark:to-transparent rounded-t-[20px] rounded-b-none pt-10 pb-4 px-8 sm:px-10 flex items-center justify-center mb-6">
+                        <img src="images/f_3.png" alt="Engagement Analysis"
+                            class="dark:hidden w-full h-auto max-w-[240px] lg:max-w-[260px] xl:max-w-[300px]">
+                        <img src="images/f_3_dark.png" alt="Engagement Analysis"
+                            class="hidden dark:block w-full h-auto max-w-[240px] lg:max-w-[260px] xl:max-w-[300px]">
+                    </div>
+                    <div class="text-center w-full">
+                        <p
+                            class="text-[1.4rem] md:text-[1.3rem] lg:text-[1.5rem] font-semibold text-[#353F4F] dark:text-white mb-[15px] leading-[1.2] transition-colors">
+                            Engagement Analysis
+                        </p>
+                        <p
+                            class="text-[#757575] dark:text-gray-400 text-[0.95rem] lg:text-[1.05rem] mb-0 max-w-[300px] mx-auto transition-colors">
+                            Egestas luctus augue undo ultrice aliquam in lacus feugiat cursus
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider line -->
+            <hr
+                class="divider w-full mt-[60px] lg:mt-[80px] h-[1px] bg-transparent bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#bbb_38%,#bbb_64%,rgba(206,211,246,0)_99%)] dark:bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#444_38%,#444_64%,rgba(206,211,246,0)_99%)] opacity-40 ![border:none] transition-colors" />
+        </div>
+    </section>
+
+    <!-- END FEATURES-2 -->
+
+    <!-- TEXT CONTENT SECTION -->
+    <section class="py-0 lg:py-0 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="flex flex-wrap items-center -mx-4">
+                <!-- Text Content (Left) -->
+                <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
+                    <div class="lg:pr-10 xl:pr-16 scroll-slide-right">
+                        <span
+                            class="text-[#6C757D] dark:text-gray-400 font-bold tracking-[1px] text-[0.8rem] uppercase mb-4 block transition-colors">
+                            PRODUCTIVITY FOCUSED
+                        </span>
+                        <h2
+                            class="text-[2rem] sm:text-[2.2rem] md:text-[2.5rem] lg:text-[2.8rem] xl:text-[3rem] font-bold text-[#353F4F] dark:text-white leading-[1.2] mb-6 transition-colors">
+                            Achieve more with<br class="hidden lg:block"> better workflows
+                        </h2>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[1rem] md:text-[1.1rem] leading-[1.7] mb-8 transition-colors">
+                            Sodales tempor sapien quaerat ipsum undo congue laoreet turpis neque auctor turpis vitae
+                            dolor luctus placerat magna and ligula cursus purus vitae purus an ipsum suscipit
+                        </p>
+                        <ul class="space-y-4 mb-0">
+                            <li class="flex items-start">
+                                <i
+                                    class="bi bi-check2 text-[#E73971] text-xl mr-3 font-bold flex-shrink-0 mt-[2px]"></i>
+                                <span
+                                    class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.6] transition-colors">Magna
+                                    dolor luctus at egestas sapien</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i
+                                    class="bi bi-check2 text-[#E73971] text-xl mr-3 font-bold flex-shrink-0 mt-[2px]"></i>
+                                <span
+                                    class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.6] transition-colors">Cursus
+                                    purus suscipit vitae cubilia magnis volute egestas vitae sapien turpis ultrice
+                                    auctor congue varius magnis</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i
+                                    class="bi bi-check2 text-[#E73971] text-xl mr-3 font-bold flex-shrink-0 mt-[2px]"></i>
+                                <span
+                                    class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.6] transition-colors">Volute
+                                    turpis dolores and sagittis congue</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Image Content (Right) -->
+                <div class="w-full lg:w-1/2 px-4">
+                    <div class="relative scroll-slide-left">
+                        <img src="images/image-1.png" alt="Achieve more with better workflows"
+                            class="max-w-full h-auto mx-auto block">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END TEXT CONTENT SECTION -->
+
+    <!-- IMAGE CONTENT SECTION -->
+    <section class="py-[60px] lg:py-[100px] bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <!-- Section Title -->
+            <div class="flex justify-center flex-wrap mb-10 lg:mb-16">
+                <div class="max-w-full lg:w-3/4 text-center scroll-slide-up">
+                    <h2
+                        class="text-[1.5rem] sm:text-[2.4rem] md:text-[2.6rem] lg:text-[2.8rem] xl:text-[3.5rem] font-bold text-[#353F4F] dark:text-white mb-[15px] sm:mb-[20px] leading-[1.2] transition-colors">
+                        Discover insights across all your<br class="hidden md:block"> data with Martex
+                    </h2>
+                    <p
+                        class="text-[#757575] dark:text-gray-400 text-[1rem] sm:text-[1.25rem] lg:text-[1.35rem] mt-[12px] mb-0 max-w-2xl mx-auto transition-colors">
+                        Ligula risus auctor tempus magna feugiat lacinia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Image Content -->
+            <div class="flex justify-center scroll-slide-up" style="animation-delay: 0.2s;">
+                <div class="w-full max-w-[900px] lg:max-w-[1000px] mx-auto">
+                    <img src="images/image-2.png" alt="Martex Dashboard Insights" class="w-full h-auto mx-auto block">
+                </div>
+            </div>
+
+            <!-- Bottom Button & Text -->
+            <div class="flex flex-col items-center justify-center mt-12 lg:mt-16 scroll-slide-up"
+                style="animation-delay: 0.3s;">
+                <a href="#"
+                    class="inline-block border-2 border-[#353F4F] dark:border-gray-300 text-[#353F4F] dark:text-gray-300 font-semibold rounded-md py-[10px] px-[28px] md:py-[12px] md:px-[32px] hover:bg-[#E73971] hover:text-white hover:border-[#E73971] transition-all duration-300 text-[1rem] md:text-[1.05rem]">
+                    Monitor your activity
+                </a>
+                <p
+                    class="text-[#757575] dark:text-gray-400 text-[0.9rem] md:text-[0.95rem] mt-5 mb-0 transition-colors">
+                    Free 14 days trial <span class="px-2 text-gray-300 dark:text-gray-600">|</span> Exclusive Support
+                    <span class="px-2 text-gray-300 dark:text-gray-600">|</span> No Fees
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- END IMAGE CONTENT SECTION -->
+
+    <!-- TEXT CONTENT SECTION -->
+    <section class="py-[60px] lg:py-[60px] bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="flex flex-wrap items-center -mx-4">
+                <!-- Image Content (Left) -->
+                <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+                    <div class="relative scroll-slide-left">
+                        <img src="images/image-3.png" alt="Feature Image" class="max-w-full h-auto mx-auto block">
+                    </div>
+                </div>
+
+                <!-- Text Content (Right) -->
+                <div class="w-full md:w-1/2 px-4">
+                    <div class="md:pl-6 lg:pl-10 xl:pl-16 scroll-slide-right">
+
+                        <!-- Item 1 -->
+                        <div class="flex group cursor-pointer">
+                            <div class="flex flex-col items-center mr-5 lg:mr-8">
+                                <div
+                                    class="w-[46px] h-[46px] md:w-[36px] md:h-[36px] lg:w-[46px] lg:h-[46px] rounded-full bg-[#E73971] flex-shrink-0 text-white flex items-center justify-center text-[1.2rem] font-bold border-2 border-transparent transition-all duration-300 group-hover:bg-transparent group-hover:border-[#E73971] group-hover:text-[#E73971] group-hover:scale-[1.08] z-10 relative">
+                                    1
+                                </div>
+                                <!-- Line -->
+                                <div
+                                    class="w-[2px] flex-grow bg-gray-200 dark:bg-gray-700 my-2 md:my-4 lg:my-4 transition-colors duration-300 z-0">
+                                </div>
+                            </div>
+                            <div class="pb-10 lg:pb-12 pt-1">
+                                <h4
+                                    class="text-[1.3rem] md:text-[1.1rem] lg:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">
+                                    Register in 30 seconds</h4>
+                                <p
+                                    class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[0.8rem] lg:text-[1rem] leading-[1.7] mb-0 transition-colors">
+                                    Ligula risus auctor tempus feugiat dolor lacinia nemo purus in ipsum purus sapien
+                                    quaerat a primis viverra tellus vitae luctus dolor ipsum neque ligula quaerat
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="flex group cursor-pointer">
+                            <div class="flex flex-col items-center mr-5 lg:mr-8">
+                                <div
+                                    class="w-[46px] h-[46px] md:w-[36px] md:h-[36px] lg:w-[46px] lg:h-[46px] rounded-full bg-[#E73971] flex-shrink-0 text-white flex items-center justify-center text-[1.2rem] font-bold border-2 border-transparent transition-all duration-300 group-hover:bg-transparent group-hover:border-[#E73971] group-hover:text-[#E73971] group-hover:scale-[1.08] z-10 relative">
+                                    2
+                                </div>
+                                <!-- Line -->
+                                <div
+                                    class="w-[2px] flex-grow bg-gray-200 dark:bg-gray-700 my-2 md:my-4 transition-colors duration-300 z-0">
+                                </div>
+                            </div>
+                            <div class="pb-10 lg:pb-12 pt-1">
+                                <h4
+                                    class="text-[1.3rem] md:text-[1.1rem] lg:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">
+                                    Customizable Dashboards</h4>
+                                <p
+                                    class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[0.8rem] lg:text-[1rem] leading-[1.7] mb-0 transition-colors">
+                                    Ligula risus auctor tempus feugiat dolor lacinia nemo purus in ipsum purus sapien
+                                    quaerat a primis viverra tellus vitae luctus dolor ipsum neque ligula quaerat
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="flex group cursor-pointer">
+                            <div class="flex flex-col items-center mr-5 lg:mr-8">
+                                <div
+                                    class="w-[46px] h-[46px] md:w-[36px] md:h-[36px] lg:w-[46px] lg:h-[46px] rounded-full bg-[#E73971] flex-shrink-0 text-white flex items-center justify-center text-[1.2rem] font-bold border-2 border-transparent transition-all duration-300 group-hover:bg-transparent group-hover:border-[#E73971] group-hover:text-[#E73971] group-hover:scale-[1.08] z-10 relative">
+                                    3
+                                </div>
+                            </div>
+                            <div class="pt-1">
+                                <h4
+                                    class="text-[1.3rem] md:text-[1.1rem] lg:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 transition-colors">
+                                    Improved Productivity</h4>
+                                <p
+                                    class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[0.8rem] lg:text-[1rem] leading-[1.7] mb-0 transition-colors">
+                                    Ligula risus auctor tempus feugiat dolor lacinia nemo purus in ipsum purus sapien
+                                    quaerat a primis viverra tellus vitae luctus dolor ipsum neque ligula quaerat
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS-1 section -->
+    <section id="review-1"
+        class="py-[80px] lg:py-[100px] bg-gradient-to-b from-[#F8F9FA] to-white dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <!-- Section Title -->
+            <div class="text-center mb-12">
+                <h2
+                    class="text-[2rem] sm:text-[2.4rem] md:text-[2.5rem] lg:text-[3.5rem] font-semibold text-[#353F4F] dark:text-white mb-[15px] leading-[1.2] transition-colors">
+                    Here’s what our amazing clients<br class="hidden md:block"> are saying
+                </h2>
+                <p
+                    class="text-[#757575] dark:text-gray-400 text-[1.1rem] sm:text-[1.25rem] lg:text-[1.35rem] mt-[12px] mb-0 transition-colors">
+                    Ligula risus auctor tempus magna feugiat lacinia.
+                </p>
+            </div>
+
+            <!-- Carousel Wrapper -->
+            <div class="relative overflow-hidden cursor-grab active:cursor-grabbing w-full pb-4 select-none"
+                id="testimonials-carousel">
+                <!-- Track -->
+                <div class="flex transition-transform duration-500 ease-out -mx-3" id="testimonials-track"
+                    style="transform: translateX(0px);">
+
+                    <!-- Review 1 -->
+                    <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
+                            <div class="mb-6 opacity-20 dark:opacity-40 text-gray-400 dark:text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                    class="bi bi-quote" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
+                                </svg>
+                            </div>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[1.05rem] leading-[1.8] mb-8 flex-grow transition-colors">
+                                An augue cubilia laoreet undo magna ipsum semper suscipit egestas magna ipsum ligula a
+                                vitae purus and ipsum primis cubilia magna suscipit
+                            </p>
+                            <div class="flex items-center mt-auto">
+                                <img src="images/review-author-1.png" alt="Jonathan Barnes"
+                                    class="w-[60px] h-[60px] rounded-full mr-4 object-cover" draggable="false">
+                                <div>
+                                    <h5
+                                        class="text-[1.15rem] font-bold text-[#353F4F] dark:text-white mb-1 transition-colors">
+                                        Jonathan Barnes</h5>
+                                    <p class="text-[#6C757D] dark:text-gray-500 text-[0.9rem] mb-0 transition-colors">
+                                        jQuery Programmer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
+                            <div class="mb-6 opacity-20 dark:opacity-40 text-gray-400 dark:text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                    class="bi bi-quote" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
+                                </svg>
+                            </div>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[1.05rem] leading-[1.8] mb-8 flex-grow transition-colors">
+                                Augue egestas porta tempus volutpat egestas augue cubilia laoreet a magna suscipit
+                                luctus dolor blandit vitae purus neque tempus an aliquet porta gestas rutrum blandit
+                                vitae
+                            </p>
+                            <div class="flex items-center mt-auto">
+                                <img src="images/review-author-2.png" alt="Mike Harris"
+                                    class="w-[60px] h-[60px] rounded-full mr-4 object-cover" draggable="false">
+                                <div>
+                                    <h5
+                                        class="text-[1.15rem] font-bold text-[#353F4F] dark:text-white mb-1 transition-colors">
+                                        Mike Harris</h5>
+                                    <p class="text-[#6C757D] dark:text-gray-500 text-[0.9rem] mb-0 transition-colors">
+                                        Graphic Designer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
+                            <div class="mb-6 opacity-20 dark:opacity-40 text-gray-400 dark:text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                    class="bi bi-quote" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
+                                </svg>
+                            </div>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[1.05rem] leading-[1.8] mb-8 flex-grow transition-colors">
+                                Augue at vitae purus tempus egestas volutpat augue undo cubilia laoreet magna suscipit
+                                luctus dolor blandit at purus tempus feugiat impedit
+                            </p>
+                            <div class="flex items-center mt-auto">
+                                <img src="images/review-author-3.png" alt="Evelyn Martinez"
+                                    class="w-[60px] h-[60px] rounded-full mr-4 object-cover" draggable="false">
+                                <div>
+                                    <h5
+                                        class="text-[1.15rem] font-bold text-[#353F4F] dark:text-white mb-1 transition-colors">
+                                        Evelyn Martinez</h5>
+                                    <p class="text-[#6C757D] dark:text-gray-500 text-[0.9rem] mb-0 transition-colors">
+                                        WordPress Consultant</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 4 -->
+                    <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
+                            <div class="mb-6 opacity-20 dark:opacity-40 text-gray-400 dark:text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                    class="bi bi-quote" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
+                                </svg>
+                            </div>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[1.05rem] leading-[1.8] mb-8 flex-grow transition-colors">
+                                Mauris donec ociis diam magnis sapien sagittis sapien tempor volute gravida
+                            </p>
+                            <div class="flex items-center mt-auto">
+                                <img src="images/review-author-4.png" alt="Dan Hodges"
+                                    class="w-[60px] h-[60px] rounded-full mr-4 object-cover" draggable="false">
+                                <div>
+                                    <h5
+                                        class="text-[1.15rem] font-bold text-[#353F4F] dark:text-white mb-1 transition-colors">
+                                        Dan Hodges</h5>
+                                    <p class="text-[#6C757D] dark:text-gray-500 text-[0.9rem] mb-0 transition-colors">
+                                        Content Creator</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 5 -->
+                    <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
+                            <div class="mb-6 opacity-20 dark:opacity-40 text-gray-400 dark:text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                    class="bi bi-quote" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
+                                </svg>
+                            </div>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[1.05rem] leading-[1.8] mb-8 flex-grow transition-colors">
+                                Aliquam a augue suscipit luctus diam neque purus ipsum neque and dolor primis libero
+                                tempus, blandit and cursus varius magnis sapien
+                            </p>
+                            <div class="flex items-center mt-auto">
+                                <img src="images/review-author-5.png" alt="Amelie Newlove"
+                                    class="w-[60px] h-[60px] rounded-full mr-4 object-cover" draggable="false">
+                                <div>
+                                    <h5
+                                        class="text-[1.15rem] font-bold text-[#353F4F] dark:text-white mb-1 transition-colors">
+                                        Amelie Newlove</h5>
+                                    <p class="text-[#6C757D] dark:text-gray-500 text-[0.9rem] mb-0 transition-colors">
+                                        Project Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 6 -->
+                    <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
+                            <div class="mb-6 opacity-20 dark:opacity-40 text-gray-400 dark:text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                    class="bi bi-quote" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
+                                </svg>
+                            </div>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[1.05rem] leading-[1.8] mb-8 flex-grow transition-colors">
+                                Augue egestas porta tempus volutpat egestas augue cubilia laoreet a magna suscipit
+                                luctus dolor blandit vitae purus neque tempus an aliquet porta
+                            </p>
+                            <div class="flex items-center mt-auto">
+                                <img src="images/review-author-6.png" alt="Spencer Reed"
+                                    class="w-[60px] h-[60px] rounded-full mr-4 object-cover" draggable="false">
+                                <div>
+                                    <h5
+                                        class="text-[1.15rem] font-bold text-[#353F4F] dark:text-white mb-1 transition-colors">
+                                        Spencer Reed</h5>
+                                    <p class="text-[#6C757D] dark:text-gray-500 text-[0.9rem] mb-0 transition-colors">
+                                        SEO Strategist</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 7 -->
+                    <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
+                            <div class="mb-6 opacity-20 dark:opacity-40 text-gray-400 dark:text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                    class="bi bi-quote" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
+                                </svg>
+                            </div>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[1.05rem] leading-[1.8] mb-8 flex-grow transition-colors">
+                                Cursus purus suscipit vitae cubilia magnis volute egestas vitae sapien turpis ultrice
+                                auctor congue
+                            </p>
+                            <div class="flex items-center mt-auto">
+                                <img src="images/review-author-7.png" alt="Alex Wood"
+                                    class="w-[60px] h-[60px] rounded-full mr-4 object-cover" draggable="false">
+                                <div>
+                                    <h5
+                                        class="text-[1.15rem] font-bold text-[#353F4F] dark:text-white mb-1 transition-colors">
+                                        Alex Wood</h5>
+                                    <p class="text-[#6C757D] dark:text-gray-500 text-[0.9rem] mb-0 transition-colors">
+                                        Web Developer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 8 -->
+                    <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
+                            <div class="mb-6 opacity-20 dark:opacity-40 text-gray-400 dark:text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                    class="bi bi-quote" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
+                                </svg>
+                            </div>
+                            <p
+                                class="text-[#6C757D] dark:text-gray-400 text-[1.05rem] leading-[1.8] mb-8 flex-grow transition-colors">
+                                Sagittis congue augue egestas egestas magna ipsum vitae purus ipsum primis in cubilia
+                                laoreet augue egestas luctus donec diam
+                            </p>
+                            <div class="flex items-center mt-auto">
+                                <img src="images/review-author-8.png" alt="Sarah Blake"
+                                    class="w-[60px] h-[60px] rounded-full mr-4 object-cover" draggable="false">
+                                <div>
+                                    <h5
+                                        class="text-[1.15rem] font-bold text-[#353F4F] dark:text-white mb-1 transition-colors">
+                                        Sarah Blake</h5>
+                                    <p class="text-[#6C757D] dark:text-gray-500 text-[0.9rem] mb-0 transition-colors">
+                                        Marketing Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Pagination Dots -->
+            <div class="flex justify-center mt-10 gap-3" id="testimonials-pagination">
+                <!-- Dots injected via JS -->
+            </div>
+        </div>
+    </section>
+    <!-- END TESTIMONIALS-1 section -->
+
+    <!-- RATING-1 Section -->
+    <section id="rating-1" class="pb-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="text-center mb-10">
+                <p
+                    class="text-[#6C757D] dark:text-gray-400 font-medium text-[1.15rem] md:text-[1.25rem] transition-colors">
+                    Our clients love us as much as we love them
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 items-center max-w-[900px] mx-auto">
+
+                <!-- Rating 1 (Capterra) -->
+                <div class="flex flex-col items-center">
+                    <img src="./images/brand-9.png" alt="Capterra" class="h-8 md:h-10 mb-4 dark:hidden">
+                    <img src="./images/brand-9-white.png" alt="Capterra" class="h-8 md:h-10 mb-4 hidden dark:block">
+                    <div
+                        class="flex items-center gap-3 bg-white dark:bg-gray-800 shadow-[0_2px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)] rounded-full px-4 py-2 transition-colors">
+                        <div class="flex text-[#ffb800] text-[0.95rem] gap-[2px]">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <span class="text-[0.95rem] font-bold text-[#6C757D] dark:text-gray-400">4.7/5</span>
+                    </div>
+                </div>
+
+                <!-- Rating 2 (Trustpilot) -->
+                <div class="flex flex-col items-center">
+                    <img src="./images/brand-10.png" alt="Trustpilot" class="h-8 md:h-10 mb-4 dark:hidden">
+                    <img src="./images/brand-10-white.png" alt="Trustpilot" class="h-8 md:h-10 mb-4 hidden dark:block">
+                    <div
+                        class="flex items-center gap-3 bg-white dark:bg-gray-800 shadow-[0_2px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)] rounded-full px-4 py-2 transition-colors">
+                        <div class="flex text-[#ffb800] text-[0.95rem] gap-[2px]">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <span class="text-[0.95rem] font-bold text-[#6C757D] dark:text-gray-400">4.95/5</span>
+                    </div>
+                </div>
+
+                <!-- Rating 3 (G2 Crowd) -->
+                <div class="flex flex-col items-center">
+                    <img src="./images/brand-11.png" alt="G2 Crowd" class="h-8 md:h-10 mb-4 dark:hidden">
+                    <img src="./images/brand-11-white.png" alt="G2 Crowd" class="h-8 md:h-10 mb-4 hidden dark:block">
+                    <div
+                        class="flex items-center gap-3 bg-white dark:bg-gray-800 shadow-[0_2px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)] rounded-full px-4 py-2 transition-colors">
+                        <div class="flex text-[#ffb800] text-[0.95rem] gap-[2px]">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <span class="text-[0.95rem] font-bold text-[#6C757D] dark:text-gray-400">4.24/5</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- END RATING-1 Section -->
+
+    <!-- INTEGRATIONS-2 Section -->
+    <section id="integrations-2"
+        class="py-[60px] lg:py-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <!-- Background Container -->
+            <div
+                class="bg-[url('./images/bg-2.png')] dark:bg-none dark:bg-gray-800 bg-cover bg-center rounded-[20px] py-[60px] md:py-[80px] lg:py-[100px] px-4 md:px-8 shadow-sm">
+
+                <!-- Text Content -->
+                <div class="text-center mb-12 lg:mb-16 max-w-3xl mx-auto">
+                    <h2
+                        class="text-[2rem] sm:text-[2.5rem] md:text-[2.5rem] lg:text-[3.5rem] md:font-semibold font-bold text-[#353F4F] dark:text-white mb-[15px] leading-[1.2] transition-colors">
+                        Automate your workflow with our integrations
+                    </h2>
+                    <p
+                        class="text-[#757575] dark:text-gray-400 text-[1.1rem] sm:text-[1.25rem] lg:text-[1.35rem] mt-[15px] mb-0 transition-colors">
+                        Ligula risus auctor tempus magna feugiat lacinia.
+                    </p>
+                </div>
+
+                <!-- Tools Grid -->
+                <div
+                    class="flex flex-wrap justify-center gap-4 md:gap-4 lg:gap-6 xl:gap-8 mb-12 max-w-[1100px] mx-auto">
+                    <!-- Tool 1 -->
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
+                            <img src="./images/tool-1.png" alt="Zapier"
+                                class="w-[50px] md:w-[50px] lg:w-[60px] xl:w-[70px] h-auto">
+                        </div>
+                        <span
+                            class="text-[#353F4F] dark:text-white font-semibold text-[1rem] transition-colors">Zapier</span>
+                    </div>
+                    <!-- Tool 2 -->
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
+                            <img src="./images/tool-2.png" alt="Google Analytics"
+                                class="w-[50px] md:w-[50px] lg:w-[60px] xl:w-[70px] h-auto">
+                        </div>
+                        <span
+                            class="text-[#353F4F] dark:text-white font-semibold text-[1rem] transition-colors text-center">Google
+                            Analytics</span>
+                    </div>
+                    <!-- Tool 3 -->
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
+                            <img src="./images/tool-3.png" alt="Amplitude"
+                                class="w-[50px] md:w-[50px] lg:w-[60px] xl:w-[70px] h-auto">
+                        </div>
+                        <span
+                            class="text-[#353F4F] dark:text-white font-semibold text-[1rem] transition-colors">Amplitude</span>
+                    </div>
+                    <!-- Tool 4 -->
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
+                            <img src="./images/tool-4.png" alt="Hubspot"
+                                class="w-[50px] md:w-[50px] lg:w-[60px] xl:w-[70px] h-auto">
+                        </div>
+                        <span
+                            class="text-[#353F4F] dark:text-white font-semibold text-[1rem] transition-colors">Hubspot</span>
+                    </div>
+                    <!-- Tool 5 -->
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
+                            <img src="./images/tool-5.png" alt="MailChimp"
+                                class="w-[50px] md:w-[50px] lg:w-[60px] xl:w-[70px] h-auto">
+                        </div>
+                        <span
+                            class="text-[#353F4F] dark:text-white font-semibold text-[1rem] transition-colors">MailChimp</span>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="flex justify-center mt-10">
+                    <a href="#"
+                        class="inline-block border-[2px] border-[#353F4F] dark:border-gray-300 text-[#353F4F] dark:text-gray-300 font-semibold rounded-md py-[10px] px-[28px] md:py-[12px] md:px-[32px] hover:bg-[#E73971] hover:text-white hover:border-[#E73971] transition-all duration-300 text-[1rem] md:text-[1.05rem]">
+                        View all integrations
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- END INTEGRATIONS-2 Section -->
+
+    <!-- FAQs-3 Section -->
+    <section id="faqs-3" class="py-[80px] lg:py-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <!-- Section Title -->
+            <div class="text-center mb-12 lg:mb-16">
+                <h2
+                    class="text-[2rem] sm:text-[2.4rem] md:text-[2.8rem] lg:text-[3.5rem] font-bold text-[#353F4F] dark:text-white mb-[15px] leading-[1.2] transition-colors">
+                    Questions & Answers
+                </h2>
+                <p
+                    class="text-[#757575] dark:text-gray-400 text-[1.1rem] sm:text-[1.25rem] lg:text-[1.4rem] mt-[12px] mb-0 transition-colors">
+                    Ligula risus auctor tempus magna feugiat lacinia.
+                </p>
+            </div>
+
+            <!-- FAQs Grid -->
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-10 lg:gap-y-12 max-w-[1320px] mx-auto">
+                <!-- Column 1 -->
+                <div class="flex flex-col gap-10 lg:gap-12">
+                    <!-- FAQ 1 -->
+                    <div>
+                        <h4
+                            class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
+                            1. Getting started with Martex
+                        </h4>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.8] mb-0 transition-colors">
+                            Etiam amet mauris suscipit in odio integer congue metus and vitae arcu mollis blandit
+                            ultrice ligula egestas magna suscipit lectus magna suscipit luctus blandit and laoreet
+                        </p>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div>
+                        <h4
+                            class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
+                            2. What's inside the package?
+                        </h4>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.8] mb-0 transition-colors">
+                            An enim nullam tempor sapien gravida donec ipsum and enim porta justo integer at velna vitae
+                            auctor integer congue undo magna laoreet augue pretium purus pretium ligula
+                        </p>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div>
+                        <h4
+                            class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
+                            3. How do I choose a plan?
+                        </h4>
+                        <ul
+                            class="list-disc pl-5 space-y-3 text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.8] marker:text-gray-400 transition-colors mb-0">
+                            <li class="pl-2">Fringilla risus, luctus mauris orci auctor purus ligula euismod pretium
+                                purus pretium rutrum tempor sapien</li>
+                            <li class="pl-2">Nemo ipsam egestas volute undo turpis purus lipsum primis aliquam sapien
+                                quaerat sodales pretium a purus</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="flex flex-col gap-10 lg:gap-12">
+                    <!-- FAQ 4 -->
+                    <div>
+                        <h4
+                            class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
+                            4. How does Martex handle my privacy?
+                        </h4>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.8] mb-4 transition-colors">
+                            Quaerat sodales sapien euismod blandit purus a purus ipsum primis in cubilia laoreet augue
+                            luctus dolor luctus
+                        </p>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.8] mb-0 transition-colors">
+                            An enim nullam tempor sapien gravida donec congue metus. Vitae arcu mollis blandit integer
+                            nemo volute velna
+                        </p>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div>
+                        <h4
+                            class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
+                            5. I have an issue with my account
+                        </h4>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.8] mb-0 transition-colors">
+                            Cubilia laoreet augue egestas and luctus donec curabite diam vitae dapibus libero and
+                            quisque gravida donec neque blandit justo aliquam molestie nunc sapien justo
+                        </p>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div>
+                        <h4
+                            class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
+                            6. Can I cancel at anytime?
+                        </h4>
+                        <p
+                            class="text-[#6C757D] dark:text-gray-400 text-[0.95rem] md:text-[1.05rem] leading-[1.8] mb-0 transition-colors">
+                            An enim nullam tempor sapien gravida donec ipsum and enim porta justo integer at velna vitae
+                            auctor integer congue undo magna laoreet augue pretium purus pretium ligula
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Get in touch pill -->
+            <div class="mt-14 md:mt-16 lg:mt-20 flex justify-center">
+                <div
+                    class="inline-flex items-center justify-center bg-[#F8F9FA] dark:bg-gray-800 rounded-full px-6 py-4 md:px-8 transition-colors duration-300">
+                    <p class="text-[#353F4F] dark:text-gray-300 font-medium text-[1rem] md:text-[1.1rem] mb-0">
+                        Have any questions?
+                        <a href="#"
+                            class="text-[#E73971] hover:text-[#d32860] underline hover:underline font-semibold ml-1 transition-colors">Get
+                            in Touch</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END FAQs-3 Section -->
+
+    <!-- BANNER-3 -->
+    <section id="banner-3" class="pt-[50px] lg:pt-[50px] pb-[50px] lg:pb-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <div class="bg-[#644296] dark:bg-[#51337b] rounded-[20px] py-[50px] md:py-[70px] lg:py-[70px] px-6 lg:px-10 text-center relative overflow-hidden shadow-[0_15px_40px_rgba(100,66,150,0.15)] dark:shadow-[0_15px_40px_rgba(0,0,0,0.4)]">
+                
+                <!-- Content -->
+                <div class="relative z-10 max-w-[800px] mx-auto">
+                    <h2 class="text-[2.2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.5rem] font-bold text-white mb-[15px] sm:mb-[20px] leading-[1.15]">
+                        Starting with Martex is easy, <br class="hidden md:block"> fast and free
+                    </h2>
+                    <p class="text-[#e0d6f2] text-[1.1rem] sm:text-[1.25rem] lg:text-[1.35rem] mb-[30px] lg:mb-[40px] font-normal">
+                        It only takes a few clicks to get started
+                    </p>
+                    <a href="#" class="inline-block bg-[#E73971] text-white font-semibold rounded-md py-[12px] px-[32px] md:py-[14px] md:px-[40px] hover:bg-[#d32860] hover:shadow-lg hover:-translate-y-[2px] transition-all duration-300 text-[1rem] md:text-[1.05rem] mb-[25px]">
+                        Get started - it's free
+                    </a>
+                    <p class="text-[#e0d6f2] text-[0.9rem] md:text-[0.95rem] flex items-center justify-center gap-2 mb-0 font-medium">
+                        <i class="bi bi-check2 text-white font-bold text-[1.2rem]"></i> Free for 14 days. no credit card required.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END BANNER-3 -->
+
+    <!-- FOOTER-3 -->
+    <footer id="footer-3" class="pt-[50px] pb-[30px] lg:pt-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
+            <!-- Footer Top Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-10 lg:gap-6 mb-12">
+                <!-- Brand -->
+                <div class="lg:col-span-3 xl:col-span-3">
+                    <a href="#" class="block mb-6">
+                        <img src="./images/martex-logo-pink.png" alt="Martex Logo" class="h-[30px] md:h-[34px] dark:hidden">
+                        <img src="./images/martex-logo-pinkwhite.png" alt="Martex Logo" class="h-[30px] md:h-[34px] hidden dark:block">
+                    </a>
+                </div>
+                
+                <!-- Company Links -->
+                <div class="lg:col-span-2">
+                    <h5 class="text-[1.1rem] font-bold text-[#353F4F] dark:text-white mb-5 transition-colors">Company</h5>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">About Us</a></li>
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Our Blog</a></li>
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Customers</a></li>
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Community</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Product Links -->
+                <div class="lg:col-span-2">
+                    <h5 class="text-[1.1rem] font-bold text-[#353F4F] dark:text-white mb-5 transition-colors">Product</h5>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Integration</a></li>
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">What's New</a></li>
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Pricing</a></li>
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal Links -->
+                <div class="lg:col-span-2">
+                    <h5 class="text-[1.1rem] font-bold text-[#353F4F] dark:text-white mb-5 transition-colors">Legal</h5>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Terms of Use</a></li>
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Privacy Policy</a></li>
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Cookie Policy</a></li>
+                        <li><a href="#" class="text-[#6C757D] dark:text-gray-400 hover:text-[#E73971] transition-colors text-[0.95rem] md:text-[1rem]">Site Map</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter Subscription -->
+                <div class="lg:col-span-3 sm:col-span-2">
+                    <h5 class="text-[1.1rem] font-bold text-[#353F4F] dark:text-white mb-5 transition-colors">Follow the Best</h5>
+                    <form class="relative w-full max-w-[320px]">
+                        <input type="email" placeholder="Email Address" class="w-full bg-[#f4f5f7] dark:bg-gray-800 text-[#353F4F] dark:text-white text-[0.95rem] rounded-md px-4 py-[12px] border border-transparent focus:border-[#E73971] outline-none transition-colors">
+                        <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-[#E73971] hover:text-[#d32860] transition-colors text-[1.2rem] p-1 flex items-center justify-center">
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Divider -->
+            <hr class="border-t-1 border-gray-300 dark:border-gray-800 my-8">
+            
+            <!-- Footer Bottom -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 py-3">
+                <p class="text-[#6C757D] dark:text-gray-500 text-[1rem] mb-0">
+                    &copy; 2025 Martex. All Rights Reserved
+                </p>
+                <!-- Social Icons -->
+                <div class="flex gap-5">
+                    <a href="#" class="text-[#6C757D] dark:text-gray-500 hover:text-[#E73971] dark:hover:text-[#E73971] transition-colors text-[1.1rem]"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-[#6C757D] dark:text-gray-500 hover:text-[#E73971] dark:hover:text-[#E73971] transition-colors text-[1.1rem]"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-[#6C757D] dark:text-gray-500 hover:text-[#E73971] dark:hover:text-[#E73971] transition-colors text-[1.1rem]"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-[#6C757D] dark:text-gray-500 hover:text-[#E73971] dark:hover:text-[#E73971] transition-colors text-[1.1rem]"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER-3 -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
