@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     const navbarLogoDesktop = document.querySelector('.logo-desktop');
     
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Mobile menu toggle
     const mobileBtn = document.getElementById('mobile-menu-button');
     const closeBtn = document.getElementById('close-menu-button');
     const navMenu = document.getElementById('navbarNav');
@@ -50,14 +48,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
     if(overlay) overlay.addEventListener('click', toggleMenu);
 
-    // Dropdown toggle for mobile
     const dropdowns = document.querySelectorAll('.dropdown-toggle');
     dropdowns.forEach(dropdown => {
         dropdown.addEventListener('click', (e) => {
             if(window.innerWidth < 1024) {
                 e.preventDefault();
                 const menu = dropdown.nextElementSibling;
-                // Close other open menus
                 document.querySelectorAll('.dropdown-menu').forEach(m => {
                     if(m !== menu) m.classList.add('hidden');
                 });
@@ -66,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -74,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 const target = document.querySelector(href);
                 if (target) {
-                    const offset = 80; // Navbar height offset
+                    const offset = 80; 
                     const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
                     window.scrollTo({
                         top: targetPosition,
@@ -85,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Theme Settings Toggle
     const themePanel = document.getElementById('theme-settings-panel');
     const themeBtn = document.getElementById('theme-toggle-btn');
     const colorBtns = document.querySelectorAll('.color-btn');
@@ -114,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Dark Mode Toggle
     const darkModeBtn = document.getElementById('dark-mode-btn');
     if (darkModeBtn) {
         darkModeBtn.addEventListener('click', () => {
@@ -130,14 +123,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 darkModeBtn.classList.remove('text-black', 'bg-white');
             }
             
-            // Update logo if scrolled
             if (window.scrollY > 50 && navbarLogoDesktop) {
                 navbarLogoDesktop.src = isDark ? './images/martex-logo-pinkwhite.png' : './images/martex-logo-pink.png';
             }
         });
     }
 
-    // Scroll Animations Observer
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -157,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollObserver.observe(el);
     });
 
-    // Statistics Counter Animation
     const statsSection = document.getElementById('statistic-1');
     if (statsSection) {
         const counters = statsSection.querySelectorAll('.counter');
@@ -218,7 +208,6 @@ document.addEventListener('DOMContentLoaded', function() {
         counterObserver.observe(statsSection);
     }
 
-    // Video Modal
     const videoBtn = document.getElementById('play-video-btn');
     const videoModal = document.getElementById('video-modal');
     const closeVideo = document.getElementById('close-video');
@@ -230,7 +219,6 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             ytPlayer.src = videoUrl;
             videoModal.classList.remove('hidden');
-            // small delay to allow display:block to apply before changing opacity
             setTimeout(() => {
                 videoModal.classList.remove('opacity-0');
             }, 10);
@@ -240,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
             videoModal.classList.add('opacity-0');
             setTimeout(() => {
                 videoModal.classList.add('hidden');
-                ytPlayer.src = ''; // Stop video playback
+                ytPlayer.src = ''; 
             }, 300);
         };
 
@@ -252,7 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Brands Carousel Auto-scroll
     const brandsTrack = document.getElementById('brands-track');
     if (brandsTrack) {
         let isTransitioning = false;
@@ -271,18 +258,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 brandsTrack.style.transform = 'translateX(0)';
                 brandsTrack.appendChild(brandsTrack.firstElementChild);
                 
-                // Small delay to ensure the browser registers the reset
                 requestAnimationFrame(() => {
                     isTransitioning = false;
                 });
             }, 500);
         };
 
-        // Scroll every 1 second (1000ms pause + 500ms transition = 1500ms interval)
         setInterval(moveCarousel, 1500);
     }
 
-    // Testimonials Carousel Logic
     const testimonialsCarousel = document.getElementById('testimonials-carousel');
     const testimonialsTrack = document.getElementById('testimonials-track');
     const testimonialsPagination = document.getElementById('testimonials-pagination');
@@ -298,9 +282,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let autoScrollInterval;
 
         const originalItems = Array.from(testimonialsTrack.children);
-        const totalOriginalItems = originalItems.length; // 8
+        const totalOriginalItems = originalItems.length; 
 
-        // Clone the first 3 items (max possible itemsPerView) and append them for infinite scrolling
         for (let i = 0; i < 3; i++) {
             if (originalItems[i]) {
                 const clone = originalItems[i].cloneNode(true);
@@ -309,16 +292,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Configuration
         const getItemsPerView = () => window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
 
         const updatePagination = () => {
             const itemsPerView = getItemsPerView();
             const totalPages = Math.ceil(totalOriginalItems / itemsPerView);
             
-            // Normalize index for pagination so dot calculation ignores the clones
             let normalizedIndex = currentIndex % totalOriginalItems;
-            if (currentIndex === totalOriginalItems) normalizedIndex = 0; // When on the clone, dot 0 is active
+            if (currentIndex === totalOriginalItems) normalizedIndex = 0; 
 
             let activePage = Math.floor(normalizedIndex / itemsPerView);
             if (activePage >= totalPages) activePage = totalPages - 1;
@@ -340,14 +321,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const itemsPerView = getItemsPerView();
             const itemWidth = testimonialsCarousel.offsetWidth / itemsPerView;
             
-            // Set explicit width for all items to fix mobile overflow issues with negative margins
             Array.from(testimonialsTrack.children).forEach(child => {
                 child.style.width = `${itemWidth}px`;
             });
             
-            // Prevent going backwards out of bounds
             if (currentIndex < 0) currentIndex = 0;
-            // Prevent going forwards out of bounds (max is the first clone)
             if (currentIndex > totalOriginalItems) currentIndex = totalOriginalItems;
             
             currentTranslate = currentIndex * -itemWidth;
@@ -396,7 +374,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const movedBy = currentTranslate - prevTranslate;
             
-            // Snap to next/prev item if moved enough
             if (movedBy < -50) {
                 currentIndex += 1;
             } else if (movedBy > 50) {
@@ -411,11 +388,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
         };
 
-        // Transition End Event to handle infinite looping silently
         testimonialsTrack.addEventListener('transitionend', () => {
             isTransitioning = false;
             if (currentIndex >= totalOriginalItems) {
-                // Silently jump back to the start
                 testimonialsTrack.style.transition = 'none';
                 currentIndex = 0;
                 
@@ -425,12 +400,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 prevTranslate = 0;
                 setSliderPosition();
                 
-                // Force reflow
                 void testimonialsTrack.offsetWidth;
             }
         });
 
-        // Event Listeners
         testimonialsCarousel.addEventListener('mousedown', dragStart);
         testimonialsCarousel.addEventListener('mousemove', dragMove);
         testimonialsCarousel.addEventListener('mouseup', dragEnd);
@@ -440,10 +413,9 @@ document.addEventListener('DOMContentLoaded', function() {
         testimonialsCarousel.addEventListener('touchmove', dragMove, { passive: true });
         testimonialsCarousel.addEventListener('touchend', dragEnd);
 
-        // Auto Scroll
         const autoScroll = () => {
             if (isTransitioning || isDragging) return;
-            currentIndex += 1; // Move by 1 item smoothly
+            currentIndex += 1; 
             setPositionByIndex(true);
         };
 
@@ -454,13 +426,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const pauseAutoScroll = () => clearInterval(autoScrollInterval);
         const resumeAutoScroll = () => {
-            autoScrollInterval = setInterval(autoScroll, 2000); // 2 seconds interval
+            autoScrollInterval = setInterval(autoScroll, 2000); 
         };
 
         testimonialsCarousel.addEventListener('mouseenter', pauseAutoScroll);
         testimonialsCarousel.addEventListener('mouseleave', () => { if (!isDragging) resumeAutoScroll(); });
 
-        // Initialize
         window.addEventListener('resize', () => {
             testimonialsTrack.style.transition = 'none';
             setPositionByIndex(false);

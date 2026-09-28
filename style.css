@@ -51,7 +51,6 @@ body.header-only-bg {
 
 /* Enable hover dropdown for large screens */
 @media (min-width: 992px) {
-  /* Removed .navbar-brand padding to let Tailwind container handle spacing */
   .dropdown:hover > .dropdown-menu {
     display: block;
     margin-top: 0;
@@ -97,8 +96,8 @@ body.header-only-bg {
   
   #hero-1 {
     background-position: center bottom !important;
-    background-attachment: scroll !important; /* Better performance and positioning on mobile */
-    padding-top: 140px !important; /* Prevent overlap with mobile navbar */
+    background-attachment: scroll !important;
+    padding-top: 140px !important;
   }
 
   .navbar-nav .btn-pink {
@@ -198,7 +197,7 @@ body.header-only-bg {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
-  padding-top: 80px; /* offset for navbar */
+  padding-top: 80px;
   position: relative;
   z-index: 3;
 }
@@ -251,7 +250,7 @@ body.header-only-bg {
   width: 100vw;
   height: 100vh;
   background: rgba(0,0,0,0.6);
-  z-index: 1060; /* Above navbar */
+  z-index: 1060;
   display: flex;
   justify-content: center;
   align-items: center;
