@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Martex</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -26,19 +24,15 @@
             }
         }
     </script>
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="header-only-bg">
-    <!-- Preloader -->
     <div id="preloader">
         <div class="spinner"></div>
     </div>
 
-    <!-- CSS-Only Popup -->
     <input type="checkbox" id="close-popup" class="hidden">
     <div class="onload-popup-overlay">
         <div class="onload-popup rounded-2xl shadow-xl overflow-hidden relative">
@@ -48,22 +42,17 @@
                 <i class="bi bi-x text-2xl"></i>
             </label>
             <img src="./images/model-1.png" alt="Promo Model" class="max-w-full h-auto w-full block">
-            <!-- Invisible clickable area for the baked-in button -->
             <a href="#" class="absolute block" style="left: 25%; bottom: 12%; width: 50%; height: 18%; z-index: 3;"
                 title="Get started for free"></a>
         </div>
     </div>
-    <!-- Mobile Overlay -->
     <div id="mobile-overlay"
         class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden transition-opacity opacity-0 duration-300"></div>
-    <!-- Navbar -->
     <nav class="navbar fixed top-0 w-full z-50 transition-all duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5 flex flex-wrap items-center justify-between">
             <a class="navbar-brand flex items-center" href="#">
-                <!-- Desktop Logo (switches on scroll) -->
                 <img src="./images/martex-logo-white.png" alt="Martex Logo"
                     class="logo-desktop hidden lg:block h-[36px] w-auto">
-                <!-- Mobile Logo (always pink because mobile navbar is white) -->
                 <img src="./images/martex-logo-pink.png" alt="Martex Logo"
                     class="logo-mobile block lg:hidden h-[36px] w-auto">
             </a>
@@ -76,7 +65,6 @@
             <div class="fixed top-0 right-0 h-full w-[280px] bg-white dark:bg-gray-900 z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto lg:static lg:translate-x-0 lg:w-auto lg:bg-transparent lg:dark:bg-transparent lg:flex lg:items-center lg:overflow-visible lg:flex-grow lg:justify-end"
                 id="navbarNav">
 
-                <!-- Close Button (Mobile Only) -->
                 <div class="flex justify-start p-4 lg:hidden border-b border-gray-200">
                     <button type="button" id="close-menu-button"
                         class="text-gray-400 hover:text-gray-600 focus:outline-none">
@@ -194,7 +182,6 @@
         </div>
     </nav>
 
-    <!-- HERO-1 -->
 
     <section id="hero-1" class="flex items-center">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
@@ -224,7 +211,6 @@
             </div>
         </div>
     </section>
-    <!-- Theme Settings Panel -->
     <div id="theme-settings-panel"
         class="fixed top-[20%] right-0 z-[1050] transform translate-x-full transition-transform duration-300 flex shadow-2xl">
         <button id="theme-toggle-btn"
@@ -279,11 +265,9 @@
     </div>
 
 
-    <!-- Features-6 section -->
     <section id="features-6"
         class="py-[100px] lg:py-[80px] md:py-[70px] features-section division bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
-            <!-- Section title -->
             <div class="flex justify-center flex-wrap">
                 <div class="max-w-full lg:w-2/3 text-center">
                     <h1
@@ -294,9 +278,7 @@
                         Ligula risus auctor tempus magna feugiat lacinia.</p>
                 </div>
             </div>
-            <!-- Feature Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 lg:mt-20 scroll-slide-up">
-                <!-- Feature 1 -->
                 <div class="text-center px-4">
                     <div class="inline-flex justify-center items-center relative mb-8 w-24 h-24">
                         <div class="absolute inset-0 bg-[var(--primary-color)] opacity-10 transform -rotate-12 scale-125"
@@ -309,7 +291,6 @@
                         class="text-[#6C757D] dark:text-gray-400 text-[14px] sm:text-[16px] md:text-[16.7px] xl:text-[18.5px] leading-[1.6] transition-colors">
                         Luctus augue egestas undo ultrice and quisque lacus</p>
                 </div>
-                <!-- Feature 2 -->
                 <div class="text-center px-4">
                     <div class="inline-flex justify-center items-center relative mb-8 w-24 h-24">
                         <div class="absolute inset-0 bg-[var(--primary-color)] opacity-10 transform rotate-12 scale-125"
@@ -322,7 +303,6 @@
                         class="text-[#6C757D] dark:text-gray-400 text-[14px] sm:text-[16px] md:text-[16.7px] xl:text-[18.5px] leading-[1.6] transition-colors">
                         Luctus augue egestas undo ultrice and quisque lacus</p>
                 </div>
-                <!-- Feature 3 -->
                 <div class="text-center px-4">
                     <div class="inline-flex justify-center items-center relative mb-8 w-24 h-24">
                         <div class="absolute inset-0 bg-[var(--primary-color)] opacity-10 transform -rotate-6 scale-125"
@@ -335,7 +315,6 @@
                         class="text-[#6C757D] dark:text-gray-400 text-[14px] sm:text-[16px] md:text-[16.7px] xl:text-[18.5px] leading-[1.6] transition-colors">
                         Luctus augue egestas undo ultrice and quisque lacus</p>
                 </div>
-                <!-- Feature 4 -->
                 <div class="text-center px-4">
                     <div class="inline-flex justify-center items-center relative mb-8 w-24 h-24">
                         <div class="absolute inset-0 bg-[var(--primary-color)] opacity-10 transform rotate-6 scale-125"
@@ -350,26 +329,21 @@
                 </div>
             </div>
 
-            <!-- Devider line -->
 
             <hr
                 class="divider w-full mt-[80px] lg:mt-[100px] h-[1px] bg-transparent bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#bbb_38%,#bbb_64%,rgba(206,211,246,0)_99%)] dark:bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#444_38%,#444_64%,rgba(206,211,246,0)_99%)] opacity-40 ![border:none] transition-colors" />
         </div>
     </section>
-    <!-- END FEATURES-6 SECTION -->
 
-    <!-- TEXT CONTENT -->
 
     <section id="lnk-1" class="py-[60px] bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="flex flex-wrap items-center -mx-4">
-                <!-- Image on left -->
                 <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
                     <div class="relative scroll-slide-left">
                         <img src="./images/lnk-1.png" alt="Engage Visitors" class="max-w-full h-auto mx-auto block">
                     </div>
                 </div>
-                <!-- Text on right -->
                 <div class="w-full md:w-1/2 px-4">
                     <div class="md:pl-6 lg:pl-10 xl:pl-16 scroll-slide-right">
                         <span
@@ -400,19 +374,16 @@
         </div>
     </section>
 
-    <!-- 2ND TEXT CONTENT -->
 
     <section id="lnk-2" class="py-[60px] bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="flex flex-wrap md:flex-row-reverse items-center -mx-4">
-                <!-- Image on right -->
                 <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
                     <div class="relative scroll-slide-right">
                         <img src="./images/lnk-2.png" alt="Solution that grows with you"
                             class="max-w-full h-auto mx-auto block">
                     </div>
                 </div>
-                <!-- Text on left -->
                 <div class="w-full md:w-1/2 px-4">
                     <div class="md:pr-6 lg:pr-10 xl:pr-16 scroll-slide-left">
                         <h2
@@ -445,13 +416,10 @@
         </div>
     </section>
 
-    <!-- END TEXT CONTENT -->
 
-    <!-- FEATURES-5 SECTION -->
     <section id="features-5"
         class="pt-[60px] pb-[30px] lg:pt-[80px] lg:pb-[40px] bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
-            <!-- Section title -->
             <div class="flex justify-center flex-wrap mb-10 lg:mb-16">
                 <div class="max-w-full lg:w-2/3 text-center">
                     <h2
@@ -465,9 +433,7 @@
                 </div>
             </div>
 
-            <!-- Grid Layout -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-                <!-- Column 1: Marketing Integrations -->
                 <div class="bg-[#F8F9FA] dark:bg-gray-800 rounded-[20px] p-8 lg:p-14 text-center h-full flex flex-col scroll-slide-up"
                     style="animation-delay: 0.1s;">
                     <h3
@@ -485,7 +451,6 @@
                     </div>
                 </div>
 
-                <!-- Column 2: Productivity Focused -->
                 <div class="bg-[#F8F9FA] dark:bg-gray-800 rounded-[20px] p-8 lg:p-14 text-center h-full flex flex-col scroll-slide-up"
                     style="animation-delay: 0.3s;">
                     <div class="mb-8 lg:mb-10">
@@ -507,14 +472,11 @@
             </div>
         </div>
     </section>
-    <!-- END FEATURES-5 SECTION -->
 
-    <!-- STATISTIC-1 SECTION -->
     <section id="statistic-1"
         class="pt-[30px] pb-[60px] lg:pt-[40px] lg:pb-[80px] bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-                <!-- Stat 1 -->
                 <div class="flex flex-col lg:flex-row items-center justify-center scroll-slide-up"
                     style="animation-delay: 0.1s;">
                     <div
@@ -526,7 +488,6 @@
                         Porta justo integer and velna vitae auctor
                     </p>
                 </div>
-                <!-- Stat 2 -->
                 <div class="flex flex-col lg:flex-row items-center justify-center scroll-slide-up"
                     style="animation-delay: 0.2s;">
                     <div
@@ -538,7 +499,6 @@
                         Ligula magna suscipit vitae and rutrum
                     </p>
                 </div>
-                <!-- Stat 3 -->
                 <div class="flex flex-col lg:flex-row items-center justify-center scroll-slide-up"
                     style="animation-delay: 0.3s;">
                     <div
@@ -552,26 +512,21 @@
                 </div>
             </div>
 
-            <!-- Devider line -->
             <hr
                 class="divider w-full mt-[40px] lg:mt-[60px] h-[1px] bg-transparent bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#bbb_38%,#bbb_64%,rgba(206,211,246,0)_99%)] dark:bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#444_38%,#444_64%,rgba(206,211,246,0)_99%)] opacity-40 ![border:none] transition-colors" />
         </div>
     </section>
-    <!-- END STATISTIC-1 SECTION -->
 
-    <!-- LNK-3 SECTION -->
     <section id="lnk-3"
         class="pt-[60px] pb-[60px] lg:pt-[80px] lg:pb-[80px] bg-white dark:bg-gray-900 overflow-hidden transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="flex flex-wrap items-center -mx-4">
-                <!-- Image on left -->
                 <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
                     <div class="relative scroll-slide-left">
                         <img src="./images/lnk-21.png" alt="The smarter way to work"
                             class="max-w-full h-auto mx-auto block">
                     </div>
                 </div>
-                <!-- Text on right -->
                 <div class="w-full md:w-1/2 px-4">
                     <div class="md:pl-6 lg:pl-10 xl:pl-16 scroll-slide-right">
                         <h2
@@ -604,20 +559,16 @@
             </div>
         </div>
     </section>
-    <!-- END LNK-3 SECTION -->
 
-    <!-- FEATURES-12 SECTION -->
     <section id="features-12"
         class="relative pt-[60px] pb-[60px] lg:pt-[80px] lg:pb-[80px] bg-white dark:bg-gray-900 overflow-hidden transition-colors duration-300">
 
-        <!-- Responsive Background Box -->
         <div
             class="absolute right-0 top-[20%] sm:top-[100%] md:top-[50%] lg:top-[20%] w-[90%] md:w-[70%] lg:w-[45%] h-[60%] md:h-[40%] lg:h-[60%] bg-[#F2F4F8] dark:bg-gray-800 rounded-l-[30px] lg:rounded-l-[40px] z-0 transition-colors duration-300 hidden sm:block">
         </div>
 
         <div class="relative z-10 w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="flex flex-wrap items-center -mx-4">
-                <!-- Text on left -->
                 <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
                     <div class="lg:pr-10 xl:pr-16 scroll-slide-left">
                         <span
@@ -661,10 +612,8 @@
                     </div>
                 </div>
 
-                <!-- Cards on right -->
                 <div class="w-full lg:w-1/2 px-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 scroll-slide-right">
-                        <!-- Card 1 -->
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-[0_5px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_20px_rgba(0,0,0,0.2)] transition-colors duration-300">
                             <div
@@ -678,7 +627,6 @@
                                 Porta semper lacus and cursus feugiat at primis ultrice a ligula auctor
                             </p>
                         </div>
-                        <!-- Card 2 -->
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-[0_5px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_20px_rgba(0,0,0,0.2)] transition-colors duration-300">
                             <div
@@ -692,7 +640,6 @@
                                 Porta semper lacus and cursus feugiat at primis ultrice a ligula auctor
                             </p>
                         </div>
-                        <!-- Card 3 -->
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-[0_5px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_20px_rgba(0,0,0,0.2)] transition-colors duration-300">
                             <div
@@ -706,7 +653,6 @@
                                 Porta semper lacus and cursus feugiat at primis ultrice a ligula auctor
                             </p>
                         </div>
-                        <!-- Card 4 -->
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-[0_5px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_20px_rgba(0,0,0,0.2)] transition-colors duration-300">
                             <div
@@ -725,20 +671,16 @@
             </div>
         </div>
     </section>
-    <!-- END FEATURES-12 SECTION -->
 
-    <!-- TEXT CONTENT -->
 
     <section id="lnk-1" class="py-[60px] bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="flex flex-wrap items-center -mx-4">
-                <!-- Image on left -->
                 <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
                     <div class="relative scroll-slide-left">
                         <img src="./images/tc.png" alt="Engage Visitors" class="max-w-full h-auto mx-auto block">
                     </div>
                 </div>
-                <!-- Text on right -->
                 <div class="w-full md:w-1/2 px-4">
                     <div class="md:pl-6 lg:pl-10 xl:pl-16 scroll-slide-right">
                         <span
@@ -762,14 +704,11 @@
         </div>
     </section>
 
-    <!-- END TEXT CONTENT -->
 
-    <!-- IMAGE CONTENT -->
 
     <section id="img-1"
         class="pt-[60px] pb-[40px] lg:pt-[80px] lg:pb-[60px] bg-[url('./images/bg-1.png')] dark:bg-none dark:bg-gray-900 bg-cover bg-center w-full transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
-            <!-- Section Title -->
             <div class="flex justify-center flex-wrap mb-10 lg:mb-14">
                 <div class="max-w-full lg:w-3/4 xl:w-2/3 text-center scroll-slide-up">
                     <h2
@@ -783,13 +722,11 @@
                 </div>
             </div>
 
-            <!-- Video/Image -->
             <div class="flex justify-center scroll-slide-up" style="animation-delay: 0.2s;">
                 <div
                     class="relative w-full max-w-[1140px] mx-auto rounded-[20px] overflow-hidden group -mb-[60px] md:-mb-[100px] lg:-mb-[120px]">
                     <img src="./images/dashboard.png" alt="Dashboard Video Preview" class="w-full h-auto block">
 
-                    <!-- Play Button -->
                     <a href="#" id="play-video-btn" class="absolute inset-0 flex items-center justify-center z-10"
                         aria-label="Play Video">
                         <div
@@ -802,7 +739,6 @@
         </div>
     </section>
 
-    <!-- Video Modal -->
     <div id="video-modal"
         class="fixed inset-0 z-[100] bg-black/80 hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
         <div class="relative w-full max-w-[900px] px-4">
@@ -816,9 +752,7 @@
         </div>
     </div>
 
-    <!-- END IMAGE CONTENT -->
 
-    <!-- BRANDS-1 -->
     <section id="brands-1"
         class="pt-[140px] md:pt-[150px] lg:pt-[150px] pb-[60px] bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
@@ -830,49 +764,42 @@
 
             <div class="overflow-hidden relative w-full" id="brands-carousel">
                 <div class="flex items-center transition-transform duration-1000 ease-in-out" id="brands-track">
-                    <!-- Brand 2 -->
                     <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
                         <img src="./images/brand-2.png" alt="Brand 2"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
                         <img src="./images/brand-2-white.png" alt="Brand 2"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
                     </div>
-                    <!-- Brand 3 -->
                     <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
                         <img src="./images/brand-3.png" alt="Brand 3"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
                         <img src="./images/brand-3-white.png" alt="Brand 3"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
                     </div>
-                    <!-- Brand 4 -->
                     <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
                         <img src="./images/brand-4.png" alt="Brand 4"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
                         <img src="./images/brand-4-white.png" alt="Brand 4"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
                     </div>
-                    <!-- Brand 5 -->
                     <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
                         <img src="./images/brand-5.png" alt="Brand 5"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
                         <img src="./images/brand-5-white.png" alt="Brand 5"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
                     </div>
-                    <!-- Brand 6 -->
                     <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
                         <img src="./images/brand-6.png" alt="Brand 6"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
                         <img src="./images/brand-6-white.png" alt="Brand 6"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
                     </div>
-                    <!-- Brand 7 -->
                     <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
                         <img src="./images/brand-7.png" alt="Brand 7"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
                         <img src="./images/brand-7-white.png" alt="Brand 7"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] hidden dark:block">
                     </div>
-                    <!-- Brand 8 -->
                     <div class="brand-item flex-shrink-0 w-1/2 md:w-1/3 lg:w-1/5 px-4 flex justify-center items-center">
                         <img src="./images/brand-8.png" alt="Brand 8"
                             class="max-w-[120px] md:max-w-[140px] lg:max-w-[160px] h-auto max-h-[80px] dark:hidden">
@@ -882,14 +809,11 @@
                 </div>
             </div>
 
-            <!-- Divider line -->
             <hr
                 class="divider w-full mt-[60px] lg:mt-[80px] h-[1px] bg-transparent bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#bbb_38%,#bbb_64%,rgba(206,211,246,0)_99%)] dark:bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#444_38%,#444_64%,rgba(206,211,246,0)_99%)] opacity-40 ![border:none] transition-colors" />
         </div>
     </section>
-    <!-- END BRANDS-1 -->
 
-    <!-- FEATURES-2 Section -->
 
     <section class="pt-[50px] pb-[60px] lg:pb-[80px] dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
@@ -963,19 +887,15 @@
                 </div>
             </div>
 
-            <!-- Divider line -->
             <hr
                 class="divider w-full mt-[60px] lg:mt-[80px] h-[1px] bg-transparent bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#bbb_38%,#bbb_64%,rgba(206,211,246,0)_99%)] dark:bg-[linear-gradient(90deg,rgba(206,211,246,0)_0,#444_38%,#444_64%,rgba(206,211,246,0)_99%)] opacity-40 ![border:none] transition-colors" />
         </div>
     </section>
 
-    <!-- END FEATURES-2 -->
 
-    <!-- TEXT CONTENT SECTION -->
     <section class="py-0 lg:py-0 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="flex flex-wrap items-center -mx-4">
-                <!-- Text Content (Left) -->
                 <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
                     <div class="lg:pr-10 xl:pr-16 scroll-slide-right">
                         <span
@@ -1018,7 +938,6 @@
                     </div>
                 </div>
 
-                <!-- Image Content (Right) -->
                 <div class="w-full lg:w-1/2 px-4">
                     <div class="relative scroll-slide-left">
                         <img src="images/image-1.png" alt="Achieve more with better workflows"
@@ -1028,12 +947,9 @@
             </div>
         </div>
     </section>
-    <!-- END TEXT CONTENT SECTION -->
 
-    <!-- IMAGE CONTENT SECTION -->
     <section class="py-[60px] lg:py-[100px] bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
-            <!-- Section Title -->
             <div class="flex justify-center flex-wrap mb-10 lg:mb-16">
                 <div class="max-w-full lg:w-3/4 text-center scroll-slide-up">
                     <h2
@@ -1047,14 +963,12 @@
                 </div>
             </div>
 
-            <!-- Image Content -->
             <div class="flex justify-center scroll-slide-up" style="animation-delay: 0.2s;">
                 <div class="w-full max-w-[900px] lg:max-w-[1000px] mx-auto">
                     <img src="images/image-2.png" alt="Martex Dashboard Insights" class="w-full h-auto mx-auto block">
                 </div>
             </div>
 
-            <!-- Bottom Button & Text -->
             <div class="flex flex-col items-center justify-center mt-12 lg:mt-16 scroll-slide-up"
                 style="animation-delay: 0.3s;">
                 <a href="#"
@@ -1069,31 +983,25 @@
             </div>
         </div>
     </section>
-    <!-- END IMAGE CONTENT SECTION -->
 
-    <!-- TEXT CONTENT SECTION -->
     <section class="py-[60px] lg:py-[60px] bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="flex flex-wrap items-center -mx-4">
-                <!-- Image Content (Left) -->
                 <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
                     <div class="relative scroll-slide-left">
                         <img src="images/image-3.png" alt="Feature Image" class="max-w-full h-auto mx-auto block">
                     </div>
                 </div>
 
-                <!-- Text Content (Right) -->
                 <div class="w-full md:w-1/2 px-4">
                     <div class="md:pl-6 lg:pl-10 xl:pl-16 scroll-slide-right">
 
-                        <!-- Item 1 -->
                         <div class="flex group cursor-pointer">
                             <div class="flex flex-col items-center mr-5 lg:mr-8">
                                 <div
                                     class="w-[46px] h-[46px] md:w-[36px] md:h-[36px] lg:w-[46px] lg:h-[46px] rounded-full bg-[#E73971] flex-shrink-0 text-white flex items-center justify-center text-[1.2rem] font-bold border-2 border-transparent transition-all duration-300 group-hover:bg-transparent group-hover:border-[#E73971] group-hover:text-[#E73971] group-hover:scale-[1.08] z-10 relative">
                                     1
                                 </div>
-                                <!-- Line -->
                                 <div
                                     class="w-[2px] flex-grow bg-gray-200 dark:bg-gray-700 my-2 md:my-4 lg:my-4 transition-colors duration-300 z-0">
                                 </div>
@@ -1110,14 +1018,12 @@
                             </div>
                         </div>
 
-                        <!-- Item 2 -->
                         <div class="flex group cursor-pointer">
                             <div class="flex flex-col items-center mr-5 lg:mr-8">
                                 <div
                                     class="w-[46px] h-[46px] md:w-[36px] md:h-[36px] lg:w-[46px] lg:h-[46px] rounded-full bg-[#E73971] flex-shrink-0 text-white flex items-center justify-center text-[1.2rem] font-bold border-2 border-transparent transition-all duration-300 group-hover:bg-transparent group-hover:border-[#E73971] group-hover:text-[#E73971] group-hover:scale-[1.08] z-10 relative">
                                     2
                                 </div>
-                                <!-- Line -->
                                 <div
                                     class="w-[2px] flex-grow bg-gray-200 dark:bg-gray-700 my-2 md:my-4 transition-colors duration-300 z-0">
                                 </div>
@@ -1134,7 +1040,6 @@
                             </div>
                         </div>
 
-                        <!-- Item 3 -->
                         <div class="flex group cursor-pointer">
                             <div class="flex flex-col items-center mr-5 lg:mr-8">
                                 <div
@@ -1160,11 +1065,9 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS-1 section -->
     <section id="review-1"
         class="py-[80px] lg:py-[100px] bg-gradient-to-b from-[#F8F9FA] to-white dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
-            <!-- Section Title -->
             <div class="text-center mb-12">
                 <h2
                     class="text-[2rem] sm:text-[2.4rem] md:text-[2.5rem] lg:text-[3.5rem] font-semibold text-[#353F4F] dark:text-white mb-[15px] leading-[1.2] transition-colors">
@@ -1176,14 +1079,11 @@
                 </p>
             </div>
 
-            <!-- Carousel Wrapper -->
             <div class="relative overflow-hidden cursor-grab active:cursor-grabbing w-full pb-4 select-none"
                 id="testimonials-carousel">
-                <!-- Track -->
                 <div class="flex transition-transform duration-500 ease-out -mx-3" id="testimonials-track"
                     style="transform: translateX(0px);">
 
-                    <!-- Review 1 -->
                     <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
@@ -1213,7 +1113,6 @@
                         </div>
                     </div>
 
-                    <!-- Review 2 -->
                     <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
@@ -1244,7 +1143,6 @@
                         </div>
                     </div>
 
-                    <!-- Review 3 -->
                     <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
@@ -1274,7 +1172,6 @@
                         </div>
                     </div>
 
-                    <!-- Review 4 -->
                     <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
@@ -1303,7 +1200,6 @@
                         </div>
                     </div>
 
-                    <!-- Review 5 -->
                     <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
@@ -1333,7 +1229,6 @@
                         </div>
                     </div>
 
-                    <!-- Review 6 -->
                     <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
@@ -1363,7 +1258,6 @@
                         </div>
                     </div>
 
-                    <!-- Review 7 -->
                     <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
@@ -1393,7 +1287,6 @@
                         </div>
                     </div>
 
-                    <!-- Review 8 -->
                     <div class="flex-shrink-0 w-full md:w-1/3 px-3 box-border">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] h-full flex flex-col transition-colors duration-300">
@@ -1426,15 +1319,11 @@
                 </div>
             </div>
 
-            <!-- Pagination Dots -->
             <div class="flex justify-center mt-10 gap-3" id="testimonials-pagination">
-                <!-- Dots injected via JS -->
             </div>
         </div>
     </section>
-    <!-- END TESTIMONIALS-1 section -->
 
-    <!-- RATING-1 Section -->
     <section id="rating-1" class="pb-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="text-center mb-10">
@@ -1446,7 +1335,6 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 items-center max-w-[900px] mx-auto">
 
-                <!-- Rating 1 (Capterra) -->
                 <div class="flex flex-col items-center">
                     <img src="./images/brand-9.png" alt="Capterra" class="h-8 md:h-10 mb-4 dark:hidden">
                     <img src="./images/brand-9-white.png" alt="Capterra" class="h-8 md:h-10 mb-4 hidden dark:block">
@@ -1463,7 +1351,6 @@
                     </div>
                 </div>
 
-                <!-- Rating 2 (Trustpilot) -->
                 <div class="flex flex-col items-center">
                     <img src="./images/brand-10.png" alt="Trustpilot" class="h-8 md:h-10 mb-4 dark:hidden">
                     <img src="./images/brand-10-white.png" alt="Trustpilot" class="h-8 md:h-10 mb-4 hidden dark:block">
@@ -1480,7 +1367,6 @@
                     </div>
                 </div>
 
-                <!-- Rating 3 (G2 Crowd) -->
                 <div class="flex flex-col items-center">
                     <img src="./images/brand-11.png" alt="G2 Crowd" class="h-8 md:h-10 mb-4 dark:hidden">
                     <img src="./images/brand-11-white.png" alt="G2 Crowd" class="h-8 md:h-10 mb-4 hidden dark:block">
@@ -1500,17 +1386,13 @@
             </div>
         </div>
     </section>
-    <!-- END RATING-1 Section -->
 
-    <!-- INTEGRATIONS-2 Section -->
     <section id="integrations-2"
         class="py-[60px] lg:py-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
-            <!-- Background Container -->
             <div
                 class="bg-[url('./images/bg-2.png')] dark:bg-none dark:bg-gray-800 bg-cover bg-center rounded-[20px] py-[60px] md:py-[80px] lg:py-[100px] px-4 md:px-8 shadow-sm">
 
-                <!-- Text Content -->
                 <div class="text-center mb-12 lg:mb-16 max-w-3xl mx-auto">
                     <h2
                         class="text-[2rem] sm:text-[2.5rem] md:text-[2.5rem] lg:text-[3.5rem] md:font-semibold font-bold text-[#353F4F] dark:text-white mb-[15px] leading-[1.2] transition-colors">
@@ -1522,10 +1404,8 @@
                     </p>
                 </div>
 
-                <!-- Tools Grid -->
                 <div
                     class="flex flex-wrap justify-center gap-4 md:gap-4 lg:gap-6 xl:gap-8 mb-12 max-w-[1100px] mx-auto">
-                    <!-- Tool 1 -->
                     <div class="flex flex-col items-center">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
@@ -1535,7 +1415,6 @@
                         <span
                             class="text-[#353F4F] dark:text-white font-semibold text-[1rem] transition-colors">Zapier</span>
                     </div>
-                    <!-- Tool 2 -->
                     <div class="flex flex-col items-center">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
@@ -1546,7 +1425,6 @@
                             class="text-[#353F4F] dark:text-white font-semibold text-[1rem] transition-colors text-center">Google
                             Analytics</span>
                     </div>
-                    <!-- Tool 3 -->
                     <div class="flex flex-col items-center">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
@@ -1556,7 +1434,6 @@
                         <span
                             class="text-[#353F4F] dark:text-white font-semibold text-[1rem] transition-colors">Amplitude</span>
                     </div>
-                    <!-- Tool 4 -->
                     <div class="flex flex-col items-center">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
@@ -1566,7 +1443,6 @@
                         <span
                             class="text-[#353F4F] dark:text-white font-semibold text-[1rem] transition-colors">Hubspot</span>
                     </div>
-                    <!-- Tool 5 -->
                     <div class="flex flex-col items-center">
                         <div
                             class="bg-white dark:bg-gray-900 rounded-[18px] w-[130px] h-[130px] sm:w-[140px] sm:h-[140px] md:w-[110px] md:h-[110px] lg:w-[140px] lg:h-[140px] xl:w-[160px] xl:h-[160px] flex items-center justify-center shadow-[0_5px_15px_rgba(0,0,0,0.05)] dark:shadow-[0_5px_15px_rgba(0,0,0,0.2)] mb-4">
@@ -1578,7 +1454,6 @@
                     </div>
                 </div>
 
-                <!-- Button -->
                 <div class="flex justify-center mt-10">
                     <a href="#"
                         class="inline-block border-[2px] border-[#353F4F] dark:border-gray-300 text-[#353F4F] dark:text-gray-300 font-semibold rounded-md py-[10px] px-[28px] md:py-[12px] md:px-[32px] hover:bg-[#E73971] hover:text-white hover:border-[#E73971] transition-all duration-300 text-[1rem] md:text-[1.05rem]">
@@ -1589,12 +1464,9 @@
             </div>
         </div>
     </section>
-    <!-- END INTEGRATIONS-2 Section -->
 
-    <!-- FAQs-3 Section -->
     <section id="faqs-3" class="py-[80px] lg:py-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
-            <!-- Section Title -->
             <div class="text-center mb-12 lg:mb-16">
                 <h2
                     class="text-[2rem] sm:text-[2.4rem] md:text-[2.8rem] lg:text-[3.5rem] font-bold text-[#353F4F] dark:text-white mb-[15px] leading-[1.2] transition-colors">
@@ -1606,12 +1478,9 @@
                 </p>
             </div>
 
-            <!-- FAQs Grid -->
             <div
                 class="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-10 lg:gap-y-12 max-w-[1320px] mx-auto">
-                <!-- Column 1 -->
                 <div class="flex flex-col gap-10 lg:gap-12">
-                    <!-- FAQ 1 -->
                     <div>
                         <h4
                             class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
@@ -1624,7 +1493,6 @@
                         </p>
                     </div>
 
-                    <!-- FAQ 2 -->
                     <div>
                         <h4
                             class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
@@ -1637,7 +1505,6 @@
                         </p>
                     </div>
 
-                    <!-- FAQ 3 -->
                     <div>
                         <h4
                             class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
@@ -1653,9 +1520,7 @@
                     </div>
                 </div>
 
-                <!-- Column 2 -->
                 <div class="flex flex-col gap-10 lg:gap-12">
-                    <!-- FAQ 4 -->
                     <div>
                         <h4
                             class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
@@ -1673,7 +1538,6 @@
                         </p>
                     </div>
 
-                    <!-- FAQ 5 -->
                     <div>
                         <h4
                             class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
@@ -1686,7 +1550,6 @@
                         </p>
                     </div>
 
-                    <!-- FAQ 6 -->
                     <div>
                         <h4
                             class="text-[1.2rem] md:text-[1.3rem] font-bold text-[#353F4F] dark:text-white mb-3 lg:mb-4 transition-colors">
@@ -1701,7 +1564,6 @@
                 </div>
             </div>
 
-            <!-- Get in touch pill -->
             <div class="mt-14 md:mt-16 lg:mt-20 flex justify-center">
                 <div
                     class="inline-flex items-center justify-center bg-[#F8F9FA] dark:bg-gray-800 rounded-full px-6 py-4 md:px-8 transition-colors duration-300">
@@ -1715,14 +1577,11 @@
             </div>
         </div>
     </section>
-    <!-- END FAQs-3 Section -->
 
-    <!-- BANNER-3 -->
     <section id="banner-3" class="pt-[50px] lg:pt-[50px] pb-[50px] lg:pb-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
             <div class="bg-[#644296] dark:bg-[#51337b] rounded-[20px] py-[50px] md:py-[70px] lg:py-[70px] px-6 lg:px-10 text-center relative overflow-hidden shadow-[0_15px_40px_rgba(100,66,150,0.15)] dark:shadow-[0_15px_40px_rgba(0,0,0,0.4)]">
                 
-                <!-- Content -->
                 <div class="relative z-10 max-w-[800px] mx-auto">
                     <h2 class="text-[2.2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.5rem] font-bold text-white mb-[15px] sm:mb-[20px] leading-[1.15]">
                         Starting with Martex is easy, <br class="hidden md:block"> fast and free
@@ -1740,14 +1599,10 @@
             </div>
         </div>
     </section>
-    <!-- END BANNER-3 -->
 
-    <!-- FOOTER-3 -->
     <footer id="footer-3" class="pt-[50px] pb-[30px] lg:pt-[50px] bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="w-full max-w-[1320px] mx-auto px-4 lg:px-5">
-            <!-- Footer Top Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-10 lg:gap-6 mb-12">
-                <!-- Brand -->
                 <div class="lg:col-span-3 xl:col-span-3">
                     <a href="#" class="block mb-6">
                         <img src="./images/martex-logo-pink.png" alt="Martex Logo" class="h-[30px] md:h-[34px] dark:hidden">
@@ -1755,7 +1610,6 @@
                     </a>
                 </div>
                 
-                <!-- Company Links -->
                 <div class="lg:col-span-2">
                     <h5 class="text-[1.1rem] font-bold text-[#353F4F] dark:text-white mb-5 transition-colors">Company</h5>
                     <ul class="flex flex-col gap-3">
@@ -1766,7 +1620,6 @@
                     </ul>
                 </div>
                 
-                <!-- Product Links -->
                 <div class="lg:col-span-2">
                     <h5 class="text-[1.1rem] font-bold text-[#353F4F] dark:text-white mb-5 transition-colors">Product</h5>
                     <ul class="flex flex-col gap-3">
@@ -1777,7 +1630,6 @@
                     </ul>
                 </div>
                 
-                <!-- Legal Links -->
                 <div class="lg:col-span-2">
                     <h5 class="text-[1.1rem] font-bold text-[#353F4F] dark:text-white mb-5 transition-colors">Legal</h5>
                     <ul class="flex flex-col gap-3">
@@ -1788,7 +1640,6 @@
                     </ul>
                 </div>
                 
-                <!-- Newsletter Subscription -->
                 <div class="lg:col-span-3 sm:col-span-2">
                     <h5 class="text-[1.1rem] font-bold text-[#353F4F] dark:text-white mb-5 transition-colors">Follow the Best</h5>
                     <form class="relative w-full max-w-[320px]">
@@ -1800,15 +1651,12 @@
                 </div>
             </div>
             
-            <!-- Divider -->
             <hr class="border-t-1 border-gray-300 dark:border-gray-800 my-8">
             
-            <!-- Footer Bottom -->
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 py-3">
                 <p class="text-[#6C757D] dark:text-gray-500 text-[1rem] mb-0">
                     &copy; 2025 Martex. All Rights Reserved
                 </p>
-                <!-- Social Icons -->
                 <div class="flex gap-5">
                     <a href="#" class="text-[#6C757D] dark:text-gray-500 hover:text-[#E73971] dark:hover:text-[#E73971] transition-colors text-[1.1rem]"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="text-[#6C757D] dark:text-gray-500 hover:text-[#E73971] dark:hover:text-[#E73971] transition-colors text-[1.1rem]"><i class="bi bi-twitter"></i></a>
@@ -1818,7 +1666,6 @@
             </div>
         </div>
     </footer>
-    <!-- END FOOTER-3 -->
 
     <script src="script.js"></script>
 </body>
